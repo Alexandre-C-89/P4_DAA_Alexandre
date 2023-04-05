@@ -1,4 +1,4 @@
-package com.example.p4_daa_alexandre.Data;
+package com.example.p4_daa_alexandre.data;
 
 import java.util.Collections;
 import java.util.List;
