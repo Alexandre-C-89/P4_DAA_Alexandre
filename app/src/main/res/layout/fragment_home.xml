@@ -4,6 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:listitem="meeting_item">
+    tools:listitem="meeting_item"
+    android:id="@+id/recyclerview_meeting_list"
+    >
 
 </androidx.recyclerview.widget.RecyclerView>

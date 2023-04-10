@@ -26,11 +26,4 @@ public class AddMeetingFragment extends Fragment {
         return view;
     }
 
-    /**
-     * Init the list of meeting
-     */
-    private void initListOfMeeting() {
-
-    }
-
 }

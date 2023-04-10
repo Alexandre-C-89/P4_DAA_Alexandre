@@ -7,7 +7,6 @@
     android:layout_margin="8dp"
     >
 
-
     <ImageView
         android:id="@+id/img_meeting"
         android:layout_width="50dp"
@@ -22,7 +21,7 @@
         android:id="@+id/title_meeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="title"
+        android:text="@string/title_addmeeting"
         android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
         app:layout_constraintStart_toEndOf="@+id/img_meeting"
@@ -33,11 +32,10 @@
         android:id="@+id/hour_meeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="X hour"
+        android:text="@string/hour_addmeeting"
         app:layout_constraintTop_toBottomOf="@+id/title_meeting"
         app:layout_constraintStart_toEndOf="@+id/img_meeting"
         app:layout_constraintStart_toStartOf="@+id/title_meeting"
         />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

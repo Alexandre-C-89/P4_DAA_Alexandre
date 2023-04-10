@@ -2,5 +2,16 @@
 
     <string name="app_name">Ma Réu</string>
 
+    <!-- Input text addMeeting -->
+    <string name="input_hour_meeting">X Hour</string>
+    <string name="input_title_meeting">Title</string>
+    <string name="input_about_meeting">About</string>
+    <string name="input_mail_meeting">Contact</string>
+
+    <!-- Input text addMeeting -->
+    <string name="title_addmeeting">Title</string>
+    <string name="hour_addmeeting">Hour</string>
+    <string name="about_addmeeting">About</string>
+    <string name="participant_addmeeting">Participant</string>
 
 </resources>
