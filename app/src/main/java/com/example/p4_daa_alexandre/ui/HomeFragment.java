@@ -8,8 +8,10 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.p4_daa_alexandre.data.Meeting;
+import com.example.p4_daa_alexandre.data.service.DummyMeetingApiService;
 import com.example.p4_daa_alexandre.data.service.MeetingApiService;
 import com.example.p4_daa_alexandre.databinding.FragmentHomeBinding;
+import com.example.p4_daa_alexandre.di.DI;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,12 +28,6 @@ public class HomeFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        mApiService = new MeetingApiService();
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         FragmentHomeBinding binding = FragmentHomeBinding.inflate(inflater, container, false);
         View view = binding.getRoot();
@@ -39,7 +35,7 @@ public class HomeFragment extends Fragment {
         mAdapter = new MeetingAdapter(mMeetings);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
-        mApiService = new MeetingApiService();
+        mApiService = DI.getMeetingApiService();
         return view;
     }
 
