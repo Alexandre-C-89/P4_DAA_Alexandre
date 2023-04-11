@@ -1,10 +1,15 @@
 package com.example.p4_daa_alexandre.ui;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.p4_daa_alexandre.R;
 import com.example.p4_daa_alexandre.data.Meeting;
 import com.example.p4_daa_alexandre.databinding.MeetingItemBinding;
 
@@ -14,7 +19,6 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
 
     private List<Meeting> mMeetings;
     private ItemClickListener mListener;
-
     public MeetingAdapter(List<Meeting> meetings) {
         mMeetings = meetings;
     }
@@ -34,7 +38,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
     @Override
     public void onBindViewHolder(@NonNull MeetingViewHolder holder, int position) {
         Meeting meeting = mMeetings.get(position);
-        //holder.bind(meeting);
+        holder.bind(meeting);
     }
 
     @Override
@@ -59,15 +63,12 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
             });
         }
 
-        /**
-         * public void bind(Meeting meeting) {
-         *             String title = meeting.getSubject() + " - " + meeting.getFormattedTime();
-         *             mBinding.tvTitle.setText(title);
-         *             mBinding.tvLocation.setText(meeting.getLocation());
-         *         }
-         * @param meeting
-         */
-
+        public void bind(Meeting meeting) {
+            String title = meeting.toString();
+            String hour = meeting.toString();
+            mBinding.titleMeeting.setText(title);
+            mBinding.hourMeeting.setText(hour);
+        }
     }
 
     public interface ItemClickListener {
