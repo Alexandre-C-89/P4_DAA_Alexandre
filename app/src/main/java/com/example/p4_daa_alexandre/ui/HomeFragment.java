@@ -7,9 +7,8 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.example.p4_daa_alexandre.data.meeting.MeetingRepository;
-import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
+import com.example.p4_daa_alexandre.data.Meeting;
+import com.example.p4_daa_alexandre.data.service.MeetingApiService;
 import com.example.p4_daa_alexandre.databinding.FragmentHomeBinding;
 
 import java.util.ArrayList;
@@ -20,10 +19,16 @@ public class HomeFragment extends Fragment {
     private RecyclerView mRecyclerView;
     private MeetingAdapter mAdapter;
     private List<Meeting> mMeetings =new ArrayList<>();
-    private MeetingRepository mApiService;
+    private MeetingApiService mApiService;
 
     public static HomeFragment newInstance() {
         return new HomeFragment();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //mApiService = new MeetingApiService();
     }
 
     @Override
@@ -34,7 +39,7 @@ public class HomeFragment extends Fragment {
         mAdapter = new MeetingAdapter(mMeetings);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
-        // mApiService = DI.getMeetingApiService();
+        //mApiService = new MeetingApiService();
         return view;
     }
 
@@ -49,7 +54,7 @@ public class HomeFragment extends Fragment {
      */
     private void initListOfMeeting() {
         mMeetings.clear();
-        mMeetings.addAll(mApiService.getMeetingsLiveData().getValue());
+        mMeetings.addAll(mApiService.getMeeting());
         mAdapter.notifyDataSetChanged();
     }
 
