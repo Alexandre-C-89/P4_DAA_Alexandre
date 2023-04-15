@@ -34,8 +34,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
     @Override
     public void onBindViewHolder(@NonNull MeetingViewHolder holder, int position) {
         Meeting meeting = mMeetings.get(position);
-        holder.mBinding.titleMeeting.setText("Réunion JC");
-        holder.mBinding.hourMeeting.setText("10h30");
+        //holder.bind(meeting);
     }
 
     @Override
@@ -60,13 +59,14 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
             });
         }
 
-
-        public void bind(Meeting meeting) {
-            String title = meeting.toString();
-            String hour = meeting.toString();
-            mBinding.titleMeeting.setText(title);
-            mBinding.hourMeeting.setText(hour);
-        }
+        /**
+         * public void bind(Meeting meeting) {
+         *             String title = meeting.getSubject() + " - " + meeting.getFormattedTime();
+         *             mBinding.tvTitle.setText(title);
+         *             mBinding.tvLocation.setText(meeting.getLocation());
+         *         }
+         * @param meeting
+         */
 
     }
 
