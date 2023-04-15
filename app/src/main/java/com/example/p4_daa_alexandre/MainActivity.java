@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import com.example.p4_daa_alexandre.databinding.ActivityMainBinding;
 import com.example.p4_daa_alexandre.ui.AddMeetingFragment;
+import com.example.p4_daa_alexandre.ui.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -19,6 +20,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        if (savedInstanceState == null) {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .add(R.id.container_fragment, HomeFragment.newInstance())
+                    .commitNow();
+        }
 
         setSupportActionBar(binding.toolbar);
         binding.addButton.setOnClickListener(new View.OnClickListener() {

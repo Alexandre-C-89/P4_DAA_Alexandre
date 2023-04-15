@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mApiService = new MeetingApiService();
+        //mApiService = new MeetingApiService();
     }
 
     @Override
@@ -39,7 +39,7 @@ public class HomeFragment extends Fragment {
         mAdapter = new MeetingAdapter(mMeetings);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
-        mApiService = new MeetingApiService();
+        //mApiService = new MeetingApiService();
         return view;
     }
 
