@@ -25,5 +25,4 @@ public class AddMeetingFragment extends Fragment {
 
         return view;
     }
-
 }

@@ -5,7 +5,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.p4_daa_alexandre.data.Meeting;
+import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.MeetingItemBinding;
 
 import java.util.List;
