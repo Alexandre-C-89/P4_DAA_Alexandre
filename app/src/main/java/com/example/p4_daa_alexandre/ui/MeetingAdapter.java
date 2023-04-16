@@ -2,10 +2,9 @@ package com.example.p4_daa_alexandre.ui;
 
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
+import com.example.p4_daa_alexandre.data.Meeting;
 import com.example.p4_daa_alexandre.databinding.MeetingItemBinding;
 
 import java.util.List;
@@ -15,8 +14,8 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
     private List<Meeting> mMeetings;
     private ItemClickListener mListener;
 
-    public MeetingAdapter(List<Meeting> meetings) {
-        mMeetings = meetings;
+    public MeetingAdapter(List<Meeting> mMeetings) {
+        mMeetings = mMeetings;
     }
 
     public void setOnItemClickListener(ItemClickListener listener) {

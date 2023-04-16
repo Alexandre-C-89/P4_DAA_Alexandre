@@ -1,4 +1,4 @@
-package com.example.p4_daa_alexandre.data.meeting.model;
+package com.example.p4_daa_alexandre.data;
 
 import androidx.annotation.NonNull;
 
@@ -11,7 +11,7 @@ public class Meeting {
     private final int id;
 
     @NonNull
-    private final String title;
+    private final String topic;
 
     @NonNull
     private final LocalTime time;
@@ -27,9 +27,10 @@ public class Meeting {
             @NonNull String topic,
             @NonNull LocalTime time,
             @NonNull List<String> participants,
-            @NonNull String roomName) {
+            @NonNull String roomName
+    ) {
         this.id = id;
-        this.title = topic;
+        this.topic = topic;
         this.time = time;
         this.participants = participants;
         this.roomName = roomName;
@@ -40,8 +41,8 @@ public class Meeting {
     }
 
     @NonNull
-    public String getTitle() {
-        return title;
+    public String getTopic() {
+        return topic;
     }
 
     @NonNull
@@ -65,7 +66,7 @@ public class Meeting {
         if (o == null || getClass() != o.getClass()) return false;
         Meeting meeting = (Meeting) o;
         return id == meeting.id &&
-                title.equals(meeting.title) &&
+                topic.equals(meeting.topic) &&
                 time.equals(meeting.time) &&
                 participants.equals(meeting.participants) &&
                 roomName == meeting.roomName;
@@ -73,14 +74,14 @@ public class Meeting {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, title, time, participants, roomName);
+        return Objects.hash(id, topic, time, participants, roomName);
     }
 
     @Override
     public String toString() {
         return "Meeting{" +
                 "id=" + id +
-                ", topic='" + title + '\'' +
+                ", topic='" + topic + '\'' +
                 ", time=" + time +
                 ", participants=" + participants +
                 ", room=" + roomName +
