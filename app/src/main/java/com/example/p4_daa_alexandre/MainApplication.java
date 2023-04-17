@@ -1,0 +1,20 @@
+package com.example.p4_daa_alexandre;
+
+import android.app.Application;
+
+public class MainApplication extends Application {
+
+    private static Application sApplication;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+
+        sApplication = this;
+    }
+
+    public static Application getInstance() {
+        return sApplication;
+    }
+
+}

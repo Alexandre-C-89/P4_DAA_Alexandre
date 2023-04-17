@@ -1,14 +1,12 @@
-package com.example.p4_daa_alexandre;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.p4_daa_alexandre.ui;
 
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+import com.example.p4_daa_alexandre.R;
 import com.example.p4_daa_alexandre.databinding.ActivityMainBinding;
-import com.example.p4_daa_alexandre.ui.AddMeetingFragment;
-import com.example.p4_daa_alexandre.ui.HomeFragment;
 
 public class MainActivity extends AppCompatActivity {
 

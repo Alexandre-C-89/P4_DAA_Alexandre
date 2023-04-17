@@ -1,11 +1,13 @@
 package com.example.p4_daa_alexandre.ui;
 
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.p4_daa_alexandre.data.Meeting;
 import com.example.p4_daa_alexandre.databinding.MeetingItemBinding;
+import com.example.p4_daa_alexandre.di.DI;
 
 import java.util.List;
 
@@ -43,8 +45,13 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
         public MeetingViewHolder(MeetingItemBinding binding) {
             super(binding.getRoot());
             mBinding = binding;
-        }
+            mBinding.deleteMeeting.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
 
+                }
+            });
+        }
 
          public void bind(Meeting meeting) {
              String title = meeting.getTitle();
