@@ -7,7 +7,25 @@ import java.util.List;
 public abstract class DummyMeetingGenerator {
 
     public static List<Meeting> DUMMY_MEETING = Arrays.asList(
-            new Meeting(1, "Caroline", 1, "joe",
+            new Meeting(1, "Caroline", "10h", Arrays.asList("joe", "Alex"),
+                    "Metallica"),
+            new Meeting(1, "Caroline", "10h", Arrays.asList("joe", "Alex"),
+                    "Metallica"),
+            new Meeting(1, "Caroline", "10h", Arrays.asList("joe", "Alex"),
+                    "Metallica"),
+            new Meeting(1, "Caroline", "10h", Arrays.asList("joe", "Alex"),
+                    "Metallica"),
+            new Meeting(1, "Caroline", "10h", Arrays.asList("joe", "Alex"),
+                    "Metallica"),
+            new Meeting(1, "Caroline", "10h", Arrays.asList("joe", "Alex"),
+                    "Metallica"),
+            new Meeting(1, "Caroline", "10h", Arrays.asList("joe", "Alex"),
+                    "Metallica"),
+            new Meeting(1, "Caroline", "10h", Arrays.asList("joe", "Alex"),
+                    "Metallica"),
+            new Meeting(1, "Caroline", "10h", Arrays.asList("joe", "Alex"),
+                    "Metallica"),
+            new Meeting(1, "Caroline", "10h", Arrays.asList("joe", "Alex"),
                     "Metallica")
             );
 

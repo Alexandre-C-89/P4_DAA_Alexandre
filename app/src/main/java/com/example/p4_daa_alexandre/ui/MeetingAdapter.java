@@ -12,14 +12,9 @@ import java.util.List;
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingViewHolder> {
 
     private List<Meeting> mMeetings;
-    private ItemClickListener mListener;
 
-    public MeetingAdapter(List<Meeting> mMeetings) {
-        mMeetings = mMeetings;
-    }
-
-    public void setOnItemClickListener(ItemClickListener listener) {
-        mListener = listener;
+    public MeetingAdapter(List<Meeting> meetings) {
+        mMeetings = meetings;
     }
 
     @NonNull
@@ -27,13 +22,13 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
     public MeetingViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         MeetingItemBinding binding = MeetingItemBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
 
-        return new MeetingViewHolder(binding, mListener);
+        return new MeetingViewHolder(binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MeetingViewHolder holder, int position) {
         Meeting meeting = mMeetings.get(position);
-        //holder.bind(meeting);
+        holder.bind(meeting);
     }
 
     @Override
@@ -45,32 +40,15 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.MeetingV
 
         private MeetingItemBinding mBinding;
 
-        public MeetingViewHolder(MeetingItemBinding binding, ItemClickListener listener) {
+        public MeetingViewHolder(MeetingItemBinding binding) {
             super(binding.getRoot());
             mBinding = binding;
-            mBinding.getRoot().setOnClickListener(v -> {
-                if (listener != null) {
-                    int position = getAdapterPosition();
-                    if (position != RecyclerView.NO_POSITION) {
-                        listener.onItemClick(position);
-                    }
-                }
-            });
         }
 
-        /**
-         * public void bind(Meeting meeting) {
-         *             String title = meeting.getSubject() + " - " + meeting.getFormattedTime();
-         *             mBinding.tvTitle.setText(title);
-         *             mBinding.tvLocation.setText(meeting.getLocation());
-         *         }
-         * @param meeting
-         */
 
+         public void bind(Meeting meeting) {
+             String title = meeting.getTitle();
+             mBinding.titleMeeting.setText(title);
+         }
     }
-
-    public interface ItemClickListener {
-        void onItemClick(int position);
-    }
-
 }

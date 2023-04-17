@@ -11,7 +11,7 @@ public class Meeting {
     private final int id;
 
     @NonNull
-    private final String topic;
+    private final String title;
 
     @NonNull
     private final LocalTime time;
@@ -24,13 +24,13 @@ public class Meeting {
 
     public Meeting(
             int id,
-            @NonNull String topic,
+            @NonNull String title,
             @NonNull LocalTime time,
             @NonNull List<String> participants,
             @NonNull String roomName
     ) {
         this.id = id;
-        this.topic = topic;
+        this.title = title;
         this.time = time;
         this.participants = participants;
         this.roomName = roomName;
@@ -41,8 +41,8 @@ public class Meeting {
     }
 
     @NonNull
-    public String getTopic() {
-        return topic;
+    public String getTitle() {
+        return title;
     }
 
     @NonNull
@@ -66,7 +66,7 @@ public class Meeting {
         if (o == null || getClass() != o.getClass()) return false;
         Meeting meeting = (Meeting) o;
         return id == meeting.id &&
-                topic.equals(meeting.topic) &&
+                title.equals(meeting.title) &&
                 time.equals(meeting.time) &&
                 participants.equals(meeting.participants) &&
                 roomName == meeting.roomName;
@@ -74,14 +74,14 @@ public class Meeting {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, topic, time, participants, roomName);
+        return Objects.hash(id, title, time, participants, roomName);
     }
 
     @Override
     public String toString() {
         return "Meeting{" +
                 "id=" + id +
-                ", topic='" + topic + '\'' +
+                ", topic='" + title + '\'' +
                 ", time=" + time +
                 ", participants=" + participants +
                 ", room=" + roomName +

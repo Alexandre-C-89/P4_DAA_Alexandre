@@ -17,7 +17,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.textfield.TextInputEditText
+    <TimePicker
         android:id="@+id/add_meeting_hour"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

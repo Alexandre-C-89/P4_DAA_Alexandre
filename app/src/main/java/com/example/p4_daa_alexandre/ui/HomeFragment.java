@@ -10,6 +10,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.p4_daa_alexandre.data.Meeting;
 import com.example.p4_daa_alexandre.data.MeetingApiService;
 import com.example.p4_daa_alexandre.databinding.FragmentHomeBinding;
+import com.example.p4_daa_alexandre.di.DI;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,6 +39,7 @@ public class HomeFragment extends Fragment {
         mAdapter = new MeetingAdapter(mMeetings);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         mRecyclerView.setAdapter(mAdapter);
+        mApiService = DI.getMeetingApiService();
         return view;
     }
 
