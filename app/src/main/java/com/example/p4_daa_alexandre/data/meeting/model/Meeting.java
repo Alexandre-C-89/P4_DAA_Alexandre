@@ -1,4 +1,4 @@
-package com.example.p4_daa_alexandre.data;
+package com.example.p4_daa_alexandre.data.meeting.model;
 
 import androidx.annotation.NonNull;
 
@@ -13,8 +13,8 @@ public class Meeting {
     @NonNull
     private final String title;
 
-    //@NonNull
-    //private final LocalTime time;
+    @NonNull
+    private final LocalTime time;
 
     @NonNull
     private final List<String> participants;
@@ -25,13 +25,13 @@ public class Meeting {
     public Meeting(
             int id,
             @NonNull String title,
-            //@NonNull LocalTime time,
+            @NonNull LocalTime time,
             @NonNull List<String> participants,
             @NonNull String roomName
     ) {
         this.id = id;
         this.title = title;
-        //this.time = time;
+        this.time = time;
         this.participants = participants;
         this.roomName = roomName;
     }
@@ -45,10 +45,10 @@ public class Meeting {
         return title;
     }
 
-    /**@NonNull
+    @NonNull
     public LocalTime getTime() {
         return time;
-    }*/
+    }
 
     @NonNull
     public List<String> getParticipants() {
@@ -67,7 +67,7 @@ public class Meeting {
         Meeting meeting = (Meeting) o;
         return id == meeting.id &&
                 title.equals(meeting.title) &&
-                //time.equals(meeting.time) &&
+                time.equals(meeting.time) &&
                 participants.equals(meeting.participants) &&
                 roomName == meeting.roomName;
     }
@@ -82,7 +82,7 @@ public class Meeting {
         return "Meeting{" +
                 "id=" + id +
                 ", topic='" + title + '\'' +
-                //", time=" + time +
+                ", time=" + time +
                 ", participants=" + participants +
                 ", room=" + roomName +
                 '}';

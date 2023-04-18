@@ -1,5 +1,7 @@
 package com.example.p4_daa_alexandre.data;
 
+import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;

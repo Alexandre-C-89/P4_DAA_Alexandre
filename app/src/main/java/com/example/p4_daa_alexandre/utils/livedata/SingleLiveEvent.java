@@ -1,4 +1,4 @@
-package com.example.p4_daa_alexandre.ui.utils;
+package com.example.p4_daa_alexandre.utils.livedata;
 
 import android.util.Log;
 
@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.lifecycle.LifecycleOwner;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
+
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SingleLiveEvent<T> extends MutableLiveData<T> {

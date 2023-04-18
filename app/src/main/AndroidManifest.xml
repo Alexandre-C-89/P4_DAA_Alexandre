@@ -12,16 +12,6 @@
         android:theme="@style/Theme.P4_DAA_Alexandre"
         tools:targetApi="31">
         <activity
-            android:name="com.example.p4_daa_alexandre.ui.MainActivity"
-            android:exported="true"
-            tools:ignore="MissingClass">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
             android:name="com.example.p4_daa_alexandre.ui.AddMeetingFragment"
             android:exported="true"
             android:parentActivityName="com.example.p4_daa_alexandre.ui.MainActivity"

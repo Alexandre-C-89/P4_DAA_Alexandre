@@ -1,4 +1,4 @@
-package com.example.p4_daa_alexandre.data;
+package com.example.p4_daa_alexandre.data.meeting;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -6,6 +6,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Transformations;
 import com.example.p4_daa_alexandre.config.BuildConfigResolver;
+import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Iterator;
