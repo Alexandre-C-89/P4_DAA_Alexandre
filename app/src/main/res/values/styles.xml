@@ -10,15 +10,6 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
 
-        <!-- enable window content transitions (shared element transition) -->
-        <item name="android:windowActivityTransitions">true</item>
-        <item name="android:windowEnterTransition">@transition/fade_delay</item>
-        <item name="android:windowReenterTransition">@transition/fade_delay</item>
-        <item name="android:windowReturnTransition">@transition/fade</item>
-        <item name="android:windowExitTransition">@transition/fade</item>
-        <item name="android:windowSharedElementEnterTransition">@transition/autotransition</item>
-        <item name="android:windowSharedElementExitTransition">@transition/autotransition</item>
-
         <item name="textInputStyle">@style/Widget.MaReu.TextInputLayout</item>
     </style>
 

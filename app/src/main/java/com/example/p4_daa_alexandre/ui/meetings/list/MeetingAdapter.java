@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.p4_daa_alexandre.R;
 
-public class MeetingAdapter extends ListAdapter<MeetingViewStateItem>, MeetingAdapter.ViewHolder {
+public class MeetingAdapter extends ListAdapter<MeetingViewStateItem, MeetingAdapter.ViewHolder> {
 
     @NonNull
     private final OnMeetingClickedListener listener;
@@ -33,6 +33,7 @@ public class MeetingAdapter extends ListAdapter<MeetingViewStateItem>, MeetingAd
         );
     }
 
+    @NonNull
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         holder.bind(getItem(position), listener);
@@ -68,9 +69,6 @@ public class MeetingAdapter extends ListAdapter<MeetingViewStateItem>, MeetingAd
             layout.setOnClickListener(view ->
                     listener.onMeetingClicked(imageViewRoom, textViewTopic, meetingViewStateItem.getMeetingId())
             );
-
-            imageViewRoom.setTransitionName(getMeetingRoomTransitionName(meetingViewStateItem.getMeetingId()));
-            textViewTopic.setTransitionName(getMeetingTopicTransitionName(meetingViewStateItem.getMeetingId()));
         }
     }
 

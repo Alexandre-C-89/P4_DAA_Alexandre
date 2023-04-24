@@ -40,6 +40,12 @@
     <string name="content_description_add">Add</string>
     <string name="meeting_finished">The meeting is over</string>
     <string name="meeting_ongoing">The meeting is ongoing…</string>
+    <string name="input_title_meeting">Title</string>
+    <string name="input_hour_meeting">Hour</string>
+    <string name="input_about_meeting">About</string>
+    <string name="input_mail_meeting">Mail</string>
+    <string name="title_addmeeting">Title of add meeting</string>
+    <string name="hour_addmeeting">Hour of add meeting</string>
 
     <plurals name="meeting_in_hours">
         <item quantity="one">Meeting starting in %d hour</item>

@@ -10,7 +10,7 @@
         android:id="@+id/img_meeting"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:background="@color/DarkGreen"
+        android:background="@color/colorPrimaryDark"
         android:layout_marginStart="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"

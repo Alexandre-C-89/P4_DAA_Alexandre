@@ -12,23 +12,20 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.util.Pair;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.TransitionManager;
 
+import com.example.p4_daa_alexandre.BuildConfig;
 import com.example.p4_daa_alexandre.R;
-import com.example.p4_daa_alexandre.ViewModelFactory;
+import com.example.p4_daa_alexandre.ui.create.CreateMeetingActivity;
+import com.example.p4_daa_alexandre.ui.details.MeetingDetailActivity;
+import com.example.p4_daa_alexandre.ui.meetings.list.MeetingAdapter;
+import com.example.p4_daa_alexandre.ui.meetings.list.OnMeetingClickedListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class MeetingActivity extends AppCompatActivity implements OnMeetingClickedListener,
-        OnRoomSelectedListener,
-        OnHourSelectedListener{
+public class MeetingActivity extends AppCompatActivity implements OnMeetingClickedListener{
 
         private CoordinatorLayout rootView;
-        private RecyclerView recyclerViewRoom;
-        private RecyclerView recyclerViewHour;
-
         private MeetingViewModel viewModel;
 
         @Override
@@ -39,11 +36,11 @@ public class MeetingActivity extends AppCompatActivity implements OnMeetingClick
 
             rootView = findViewById(R.id.meeting_cl_root);
 
-            viewModel = new ViewModelProvider(this, ViewModelFactory.getInstance()).get(MeetingViewModel.class);
+            //viewModel = new ViewModelProvider(this, ViewModelFactory.getInstance()).get(MeetingViewModel.class);
 
             initToolbar();
             initRecyclerViews();
-            initSortingDialog();
+            //initSortingDialog();
             initFab();
         }
 
@@ -57,29 +54,15 @@ public class MeetingActivity extends AppCompatActivity implements OnMeetingClick
             RecyclerView recyclerView = findViewById(R.id.meeting_rv);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.setAdapter(adapter);
-
-            final RoomFilterAdapter roomAdapter = new RoomFilterAdapter(this);
-            recyclerViewRoom = findViewById(R.id.meeting_rv_rooms);
-            recyclerViewRoom.setAdapter(roomAdapter);
-
-            final HourFilterAdapter hourAdapter = new HourFilterAdapter(this);
-            recyclerViewHour = findViewById(R.id.meeting_rv_hours);
-            recyclerViewHour.setAdapter(hourAdapter);
-
-            viewModel.getViewStateLiveData().observe(this, viewState -> {
-                adapter.submitList(viewState.getMeetingViewStateItems());
-                roomAdapter.submitList(viewState.getMeetingViewStateRoomFilterItems());
-                hourAdapter.submitList(viewState.getMeetingViewStateHourFilterItems());
-            });
         }
 
-        private void initSortingDialog() {
+        /**private void initSortingDialog() {
             viewModel.getViewActionSingleLiveEvent().observe(this, viewAction -> {
                 if (viewAction == MeetingViewAction.DISPLAY_SORTING_DIALOG) {
                     SortDialogFragment.newInstance().show(getSupportFragmentManager(), null);
                 }
             });
-        }
+        }*/
 
         private void initFab() {
             FloatingActionButton floatingActionButton = findViewById(R.id.meeting_fab);
@@ -105,22 +88,16 @@ public class MeetingActivity extends AppCompatActivity implements OnMeetingClick
             return true;
         }
 
-        @Override
+        /**@Override
         public boolean onOptionsItemSelected(@NonNull MenuItem item) {
             int itemId = item.getItemId();
             if (itemId == R.id.meeting_menu_sort) {
                 viewModel.onDisplaySortingButtonClicked();
                 return true;
-            } else if (itemId == R.id.meeting_menu_filter_room) {
-                changeVisibilityWithAnimation(recyclerViewRoom);
-                return true;
-            } else if (itemId == R.id.meeting_menu_filter_hour) {
-                changeVisibilityWithAnimation(recyclerViewHour);
-                return true;
             }
 
             return super.onOptionsItemSelected(item);
-        }
+        }*/
 
         @Override
         public void onMeetingClicked(@NonNull View imageView, @NonNull View textView, int meetingId) {
@@ -144,29 +121,8 @@ public class MeetingActivity extends AppCompatActivity implements OnMeetingClick
             viewModel.onDeleteMeetingClicked(meetingId);
         }
 
-        @Override
-        public void onRoomSelected(@NonNull Room room) {
-            viewModel.onRoomSelected(room);
-        }
-
-        @Override
+        /**@Override
         public void onHourSelected(@NonNull LocalTime hour) {
             viewModel.onHourSelected(hour);
-        }
-
-        // A small utility function that invert visibility of a View with a nice animation !
-        private void changeVisibilityWithAnimation(@NonNull View view) {
-            boolean isViewActuallyVisible = view.getVisibility() == View.VISIBLE;
-
-            TransitionManager.endTransitions(rootView);
-
-            // This is the "magical part" that makes the animation automatic
-            TransitionManager.beginDelayedTransition(rootView);
-
-            if (isViewActuallyVisible) {
-                view.setVisibility(View.GONE);
-            } else {
-                view.setVisibility(View.VISIBLE);
-            }
-        }
+        }*/
 }

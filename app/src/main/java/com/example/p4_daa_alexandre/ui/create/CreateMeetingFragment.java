@@ -8,12 +8,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.example.p4_daa_alexandre.R;
 import com.example.p4_daa_alexandre.ViewModelFactory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -74,12 +72,12 @@ public class CreateMeetingFragment extends Fragment {
         });
 
         viewModel.getViewActionLiveData().observe(getViewLifecycleOwner(), viewAction -> {
-            if (viewAction instanceof ViewAction.CloseActivity) {
+            if (viewAction instanceof CreateMeetingViewModel.ViewAction.CloseActivity) {
                 // This is bad practice, a fragment shouldn't close its activity, but for simplicity's sake...
                 // https://developer.android.com/training/basics/fragments/communicating
                 requireActivity().finish();
-            } else if (viewAction instanceof ViewAction.DisplayTimePicker) {
-                ViewAction.DisplayTimePicker casted = (ViewAction.DisplayTimePicker) viewAction;
+            } else if (viewAction instanceof CreateMeetingViewModel.ViewAction.DisplayTimePicker) {
+                CreateMeetingViewModel.ViewAction.DisplayTimePicker casted = (ViewAction.DisplayTimePicker) viewAction;
 
                 MaterialTimePicker materialDatePicker = new MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_24H)
