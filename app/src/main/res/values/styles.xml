@@ -1,0 +1,42 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+        <!-- enable window content transitions (shared element transition) -->
+        <item name="android:windowActivityTransitions">true</item>
+        <item name="android:windowEnterTransition">@transition/fade_delay</item>
+        <item name="android:windowReenterTransition">@transition/fade_delay</item>
+        <item name="android:windowReturnTransition">@transition/fade</item>
+        <item name="android:windowExitTransition">@transition/fade</item>
+        <item name="android:windowSharedElementEnterTransition">@transition/autotransition</item>
+        <item name="android:windowSharedElementExitTransition">@transition/autotransition</item>
+
+        <item name="textInputStyle">@style/Widget.MaReu.TextInputLayout</item>
+    </style>
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.MaterialComponents.Dark.ActionBar" />
+
+    <style name="Widget.MaReu.TextView" parent="@android:style/Widget.Material.TextView" />
+
+    <style name="Widget.MaReu.TextView.Topic">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Widget.MaReu.TextView.Participants">
+        <item name="android:textColor">@color/textColorSecondary</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="Widget.MaReu.TextInputLayout" parent= "Widget.MaterialComponents.TextInputLayout.OutlinedBox"/>
+
+    <style name="Widget.MaReu.Spinner" parent= "Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"/>
+</resources>

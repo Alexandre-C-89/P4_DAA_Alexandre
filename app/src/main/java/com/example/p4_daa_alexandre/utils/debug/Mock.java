@@ -38,8 +38,8 @@ public class Mock {
         return participants;
     }
 
-    public static Room getRandomMeetingRoom() {
-        return Room.values()[new Random().nextInt(Room.values().length - 1) + 1];
+    public static String getRandomMeetingRoom() {
+        return String.values()[new Random().nextInt(String.values().length - 1) + 1];
     }
 
     private static final String[] FIRST_NAMES = new String[]{

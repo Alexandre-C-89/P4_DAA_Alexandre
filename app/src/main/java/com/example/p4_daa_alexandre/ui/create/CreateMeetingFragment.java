@@ -128,16 +128,16 @@ public class CreateMeetingFragment extends Fragment {
         });
     }
 
-    private void initRoomAutocompleteView(
+    /**private void initRoomAutocompleteView(
             @NonNull CreateMeetingViewModel viewModel,
             @NonNull AutoCompleteTextView autoCompleteTextView,
-            @NonNull Room[] rooms
+            @NonNull String[] rooms
     ) {
         final CreateMeetingSpinnerAdapter adapter = new CreateMeetingSpinnerAdapter(requireContext(), rooms);
         autoCompleteTextView.setAdapter(adapter);
         autoCompleteTextView.setOnItemClickListener((parent, view, position, id) ->
                 viewModel.onRoomChanged(adapter.getItem(position))
         );
-    }
+    }*/
 
 }

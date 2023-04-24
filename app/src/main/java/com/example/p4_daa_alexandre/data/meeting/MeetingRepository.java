@@ -1,58 +1,60 @@
 package com.example.p4_daa_alexandre.data.meeting;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.Transformations;
-import com.example.p4_daa_alexandre.config.BuildConfigResolver;
-import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 
+import com.example.p4_daa_alexandre.BuildConfig;
+import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
+import com.example.p4_daa_alexandre.utils.debug.Mock;
+
+import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 
 public class MeetingRepository {
 
-    private final MutableLiveData<List<Meeting>> meetingsLiveData = new MutableLiveData<>(new ArrayList<>());
+    private final MutableLiveData<List<Meeting>> meetingsLiveData = new MutableLiveData<>();
 
-    private long maxId = 0;
-
-    public MeetingRepository(BuildConfigResolver buildConfigResolver) {
-        // At startup, when creating repo, if we're in debug mode, add random Neighbours
-        if (buildConfigResolver.isDebug()) {
-            generateRandomMeetings();
-        }
-    }
+    private int highestMeetingId = 0;
 
     public void addMeeting(
-            @NonNull String title,
+            @NonNull String topic,
+            @NonNull LocalTime time,
             @NonNull List<String> participants,
-            @Nullable String roomName
+            //@NonNull Room room
+            @NonNull String room
     ) {
-        List<Meeting> meetings = meetingsLiveData.getValue();
+        List<Meeting> currentList = meetingsLiveData.getValue();
 
-        if (meetings == null) return;
+        if (currentList == null) {
+            currentList = new ArrayList<>();
+        }
 
-        meetings.add(
+        currentList.add(
                 new Meeting(
-                        (int) maxId++,
-                        title,
+                        highestMeetingId,
+                        topic,
+                        time,
                         participants,
-                        roomName
+                        room
                 )
         );
 
-        meetingsLiveData.setValue(meetings);
+        highestMeetingId++;
+
+        meetingsLiveData.setValue(currentList);
     }
 
-    public void deleteMeeting(long meetingId) {
-        List<Meeting> meetings = meetingsLiveData.getValue();
+    public void deleteMeeting(int meetingId) {
+        List<Meeting> currentList = meetingsLiveData.getValue();
 
-        if (meetings == null) return;
+        if (currentList == null) {
+            currentList = new ArrayList<>();
+        }
 
-        for (Iterator<Meeting> iterator = meetings.iterator(); iterator.hasNext(); ) {
+        for (Iterator<Meeting> iterator = currentList.iterator(); iterator.hasNext(); ) {
             Meeting meeting = iterator.next();
 
             if (meeting.getId() == meetingId) {
@@ -61,34 +63,23 @@ public class MeetingRepository {
             }
         }
 
-        meetingsLiveData.setValue(meetings);
+        meetingsLiveData.setValue(currentList);
     }
 
+    @NonNull
     public LiveData<List<Meeting>> getMeetingsLiveData() {
         return meetingsLiveData;
     }
 
-    public LiveData<Meeting> getMeetingLiveData(long meetingId) {
-        // We use a Transformation here so whenever the neighboursLiveData changes, the underlying lambda will be called too, and
-        // the Neighbour will be re-emitted (with potentially new information like isFavorite set to true or false)
-
-        // This Transformation transforms a List of Neighbours into a Neighbour (matched by its ID)
-        return Transformations.map(meetingsLiveData, meetings -> {
-            for (Meeting meeting : meetings) {
-                if (meeting.getId() == meetingId) {
-                    return meeting;
-                }
-            }
-
-            return null;
-        });
-    }
-
-    private void generateRandomMeetings() {
-        addMeeting(
-                "Caroline",
-                Arrays.asList("Joe", "Alex"),
-                "Metallica"
-        );
+    // DEBUG
+    public void addDebugMeeting() {
+        if (BuildConfig.DEBUG) {
+            addMeeting(
+                    Mock.getRandomMeetingTopic(),
+                    Mock.getRandomMeetingHour(),
+                    Mock.getRandomMeetingParticipants(),
+                    Mock.getRandomMeetingRoom()
+            );
+        }
     }
 }

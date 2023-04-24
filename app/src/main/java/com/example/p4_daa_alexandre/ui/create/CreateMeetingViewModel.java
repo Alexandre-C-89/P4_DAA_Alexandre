@@ -8,8 +8,9 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.p4_daa_alexandre.R;
 import com.example.p4_daa_alexandre.data.meeting.MeetingRepository;
-import com.example.p4_daa_alexandre.ui.utils.SingleLiveEvent;
+import com.example.p4_daa_alexandre.utils.livedata.SingleLiveEvent;
 
 import java.time.Clock;
 import java.time.LocalTime;
@@ -41,7 +42,7 @@ public class CreateMeetingViewModel extends ViewModel {
     @NonNull
     private final List<String> participants = new ArrayList<>();
     @Nullable
-    private Room room;
+    private String room;
     @NonNull
     private LocalTime time;
 
@@ -59,7 +60,7 @@ public class CreateMeetingViewModel extends ViewModel {
 
         createMeetingViewStateMutableLiveData.setValue(
                 new CreateMeetingViewState(
-                        Room.values(),
+                        String.values(),
                         formatTime(),
                         null,
                         null,
@@ -123,7 +124,7 @@ public class CreateMeetingViewModel extends ViewModel {
         }
     }
 
-    public void onRoomChanged(@Nullable Room room) {
+    public void onRoomChanged(@Nullable String room) {
         this.room = room;
 
         CreateMeetingViewState currentViewState = createMeetingViewStateMutableLiveData.getValue();
@@ -288,11 +289,11 @@ public class CreateMeetingViewModel extends ViewModel {
         @NonNull
         private final List<String> participants;
         @NonNull
-        private final Room room;
+        private final String room;
         @NonNull
         private final LocalTime time;
 
-        public VerifiedInputs(@NonNull String topic, @NonNull List<String> participants, @NonNull Room room, @NonNull LocalTime time) {
+        public VerifiedInputs(@NonNull String topic, @NonNull List<String> participants, @NonNull String room, @NonNull LocalTime time) {
             this.topic = topic;
             this.participants = participants;
             this.room = room;

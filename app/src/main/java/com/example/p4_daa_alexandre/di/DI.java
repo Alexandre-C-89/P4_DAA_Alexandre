@@ -1,28 +1,27 @@
 package com.example.p4_daa_alexandre.di;
 
-import com.example.p4_daa_alexandre.data.DummyMeetingApiService;
-import com.example.p4_daa_alexandre.data.MeetingApiService;
+import com.example.p4_daa_alexandre.data.meeting.MeetingRepository;
 
 /**
  * Dependency injector to get instance of services
  */
 public class DI {
 
-    private static MeetingApiService service = new DummyMeetingApiService();
+    private static MeetingRepository service = new MeetingRepository();
 
     /**
-     * Get an instance on @{@link MeetingApiService}
+     * Get an instance on @{@link MeetingRepository}
      * @return
      */
-    public static MeetingApiService getMeetingApiService() {
+    public static MeetingRepository getMeetingApiService() {
         return service;
     }
 
     /**
-     * Get always a new instance on @{@link MeetingApiService}. Useful for tests, so we ensure the context is clean.
+     * Get always a new instance on @{@link MeetingRepository}. Useful for tests, so we ensure the context is clean.
      * @return
      */
-    public static MeetingApiService getNewInstanceApiService() {
-        return new DummyMeetingApiService();
+    public static MeetingRepository getNewInstanceApiService() {
+        return new MeetingRepository();
     }
 }

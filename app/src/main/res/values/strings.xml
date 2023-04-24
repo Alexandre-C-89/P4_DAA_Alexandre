@@ -1,17 +1,53 @@
 <resources>
+    <string name="app_name">Meetings</string>
 
-    <string name="app_name">Ma Réu</string>
+    <string name="peach">Peach</string>
+    <string name="mario">Mario</string>
+    <string name="luigi">Luigi</string>
+    <string name="wario">Wario</string>
+    <string name="link">Link</string>
+    <string name="yoshi">Yoshi</string>
+    <string name="dk">D.K.</string>
+    <string name="mewtwo">Mewtwo</string>
 
-    <!-- Input text addMeeting -->
-    <string name="input_hour_meeting">X Hour</string>
-    <string name="input_title_meeting">Title</string>
-    <string name="input_about_meeting">About</string>
-    <string name="input_mail_meeting">Contact</string>
+    <string name="meeting_title">%1$s - %2$s - %3$s</string>
+    <string name="content_description_delete">Delete</string>
+    <string name="room">Room</string>
+    <string name="time">Time</string>
+    <string name="topic">Topic</string>
+    <string name="participants">Participants</string>
 
-    <!-- Input text addMeeting -->
-    <string name="title_addmeeting">Title</string>
-    <string name="hour_addmeeting">Hour</string>
-    <string name="about_addmeeting">About</string>
-    <string name="participant_addmeeting">Participant</string>
+    <string name="topic_user_input_error">Please insert a topic</string>
+    <string name="participants_user_input_error">Please insert at least one participant</string>
+    <string name="room_user_input_error">Please select a room</string>
 
+    <string name="create_meeting_title">Create a new meeting</string>
+
+    <string name="detail_meeting_title">Meeting details</string>
+
+    <string name="filter_room">Filter by room</string>
+    <string name="filter_hour">Filter by hour</string>
+
+    <string name="sort">Sort</string>
+    <string name="sorting_alphabetic_none">Alphabetical sorting : none</string>
+    <string name="sorting_alphabetic_sorted">Alphabetical sorting : A-Z</string>
+    <string name="sorting_alphabetic_inverted_sorted">Alphabetical sorting : Z-A</string>
+
+    <string name="sorting_chronological_none">Chronological sorting : none</string>
+    <string name="sorting_chronological_sorted">Chronological sorting : chronological</string>
+    <string name="sorting_chronological_inverted_sorted">Chronological sorting : inverted</string>
+
+    <string name="content_description_add">Add</string>
+    <string name="meeting_finished">The meeting is over</string>
+    <string name="meeting_ongoing">The meeting is ongoing…</string>
+
+    <plurals name="meeting_in_hours">
+        <item quantity="one">Meeting starting in %d hour</item>
+        <item quantity="other">Meeting starting in %d hours</item>
+    </plurals>
+
+    <plurals name="meeting_in_minutes">
+        <item quantity="one">Meeting starting in %d minute</item>
+        <item quantity="other">Meeting starting in %d minutes</item>
+    </plurals>
 </resources>
