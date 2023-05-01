@@ -8,10 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AutoCompleteTextView;
 import android.widget.EditText;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+
 import com.example.p4_daa_alexandre.R;
 import com.example.p4_daa_alexandre.ViewModelFactory;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -63,7 +65,7 @@ public class CreateMeetingFragment extends Fragment {
             // This is purely for performance purposes, it doesn't modify behavior, it can be removed
             if (!isRoomAutocompleteViewInitialized) {
                 isRoomAutocompleteViewInitialized = true;
-                initRoomAutocompleteView(viewModel, autocompleteTextViewRoom, viewState.getRooms());
+                //initRoomAutocompleteView(viewModel, autocompleteTextViewRoom, viewState.getRooms());
             }
             topicEditText.setError(viewState.getTopicError());
             participantsEditText.setError(viewState.getParticipantsError());
@@ -77,7 +79,7 @@ public class CreateMeetingFragment extends Fragment {
                 // https://developer.android.com/training/basics/fragments/communicating
                 requireActivity().finish();
             } else if (viewAction instanceof CreateMeetingViewModel.ViewAction.DisplayTimePicker) {
-                CreateMeetingViewModel.ViewAction.DisplayTimePicker casted = (ViewAction.DisplayTimePicker) viewAction;
+                CreateMeetingViewModel.ViewAction.DisplayTimePicker casted = (CreateMeetingViewModel.ViewAction.DisplayTimePicker) viewAction;
 
                 MaterialTimePicker materialDatePicker = new MaterialTimePicker.Builder()
                         .setTimeFormat(TimeFormat.CLOCK_24H)

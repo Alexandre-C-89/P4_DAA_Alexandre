@@ -6,7 +6,7 @@ import androidx.annotation.Nullable;
 public class CreateMeetingViewState {
 
     @NonNull
-    private final Room[] rooms;
+    private final String rooms;
 
     @NonNull
     private final String time;
@@ -21,7 +21,7 @@ public class CreateMeetingViewState {
     private final String roomError;
 
     public CreateMeetingViewState(
-            @NonNull Room[] rooms,
+            @NonNull String rooms,
             @NonNull String time,
             @Nullable String topicError,
             @Nullable String participantsError,
@@ -35,7 +35,7 @@ public class CreateMeetingViewState {
     }
 
     @NonNull
-    public Room[] getRooms() {
+    public String getRooms() {
         return rooms;
     }
 

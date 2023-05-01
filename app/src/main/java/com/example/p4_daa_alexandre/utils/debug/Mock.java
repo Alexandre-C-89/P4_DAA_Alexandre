@@ -39,7 +39,7 @@ public class Mock {
     }
 
     public static String getRandomMeetingRoom() {
-        return String.values()[new Random().nextInt(String.values().length - 1) + 1];
+        return "room";
     }
 
     private static final String[] FIRST_NAMES = new String[]{

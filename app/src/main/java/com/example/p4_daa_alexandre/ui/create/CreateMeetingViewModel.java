@@ -60,7 +60,7 @@ public class CreateMeetingViewModel extends ViewModel {
 
         createMeetingViewStateMutableLiveData.setValue(
                 new CreateMeetingViewState(
-                        String.values(),
+                        "",
                         formatTime(),
                         null,
                         null,
@@ -208,7 +208,7 @@ public class CreateMeetingViewModel extends ViewModel {
 
         createMeetingViewStateMutableLiveData.setValue(
                 new CreateMeetingViewState(
-                        Room.values(),
+                        room,
                         formatTime(),
                         topicError,
                         participantsError,
