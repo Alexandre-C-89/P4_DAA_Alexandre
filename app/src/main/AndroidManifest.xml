@@ -21,21 +21,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.example.p4_daa_alexandre.ui.meetings.MeetingActivity"
-            android:exported="true"
-            tools:ignore="Instantiatable">
-        </activity>
-        <activity
-            android:name="com.example.p4_daa_alexandre.ui.create.CreateMeetingActivity"
-            android:exported="true"
-            tools:ignore="Instantiatable">
-        </activity>
-        <activity
-            android:name="com.example.p4_daa_alexandre.ui.details.MeetingDetailActivity"
-            android:exported="true"
-            tools:ignore="Instantiatable">
-        </activity>
     </application>
 
 </manifest>
