@@ -12,17 +12,10 @@ import java.util.List;
 public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHolder> {
 
     private List<Meeting> mMeetings;
-    private OnItemClickListener mListener;
-
-    // Interface pour écouter les clics sur les éléments de la liste de réunions
-    public interface OnItemClickListener {
-        void onItemClick(Meeting meeting);
-    }
 
     // Constructeur pour initialiser la liste de réunions et l'écouteur de clic
-    public MeetingAdapter(List<Meeting> meetings, OnItemClickListener listener) {
+    public MeetingAdapter(List<Meeting> meetings) {
         mMeetings = meetings;
-        mListener = listener;
     }
 
     // ViewHolder pour stocker les vues de l'élément de la liste de réunions
@@ -40,17 +33,12 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
             mMeetingRoomName = itemView.findViewById(R.id.room_name_create_meeting_inputedittext);
         }
 
-        public void bind(Meeting meeting, OnItemClickListener listener) {
+        public void bind(Meeting meeting) {
             mMeetingTitle.setText(meeting.getTitle());
-            mMeetingParticipants.setText(meeting.getParticipants());
+            //mMeetingParticipants.setText(meeting.getParticipants());
+            //mMeetingHour.setText(meeting.getTime());
+            mMeetingRoomName.setText(meeting.getRoomName());
 
-            // Ajouter un écouteur de clic sur l'élément de la liste de réunions
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    listener.onItemClick(meeting);
-                }
-            });
         }
     }
 
@@ -66,7 +54,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Meeting meeting = mMeetings.get(position);
-        holder.bind(meeting, mListener);
+        holder.bind(meeting);
     }
 
     // getItemCount pour renvoyer le nombre d'éléments dans la liste de réunions

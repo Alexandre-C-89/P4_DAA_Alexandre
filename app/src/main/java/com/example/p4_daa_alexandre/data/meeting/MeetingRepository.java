@@ -18,6 +18,15 @@ public class MeetingRepository {
     private final MutableLiveData<List<Meeting>> meetingsLiveData = new MutableLiveData<>();
 
     private int highestMeetingId = 0;
+    private static MeetingRepository instance;
+
+    public List<Meeting> getMeetings() {
+        List<Meeting> meetings = meetingsLiveData.getValue();
+        if (meetings == null) {
+            meetings = new ArrayList<>();
+        }
+        return meetings;
+    }
 
     public void addMeeting(
             @NonNull String topic,
@@ -45,6 +54,13 @@ public class MeetingRepository {
         highestMeetingId++;
 
         meetingsLiveData.setValue(currentList);
+    }
+
+    public static MeetingRepository getInstance() {
+        if (instance == null) {
+            instance = new MeetingRepository();
+        }
+        return instance;
     }
 
     public void deleteMeeting(int meetingId) {
