@@ -8,10 +8,12 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.p4_daa_alexandre.DI.Di;
 import com.example.p4_daa_alexandre.data.meeting.MeetingRepository;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.FragmentHomeBinding;
@@ -22,14 +24,16 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private List<Meeting> meetingList = new ArrayList();
-
     private HomeFragmentViewModel mViewModel;
     private MeetingRepository mMeetingRepository;
+    private MeetingAdapter adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
+
+        mMeetingRepository = Di.getMeetingRepository();
 
         // Initialize the ViewModel with the MeetingRepository
         mViewModel = new ViewModelProvider(this, new HomeFragmentViewModelFactory(mMeetingRepository)).get(HomeFragmentViewModel.class);
@@ -40,6 +44,14 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        // Observe la liste de meeting
+        mViewModel.getMeetings().observe(getViewLifecycleOwner(), new Observer<List<Meeting>>() {
+            @Override
+            public void onChanged(List<Meeting> meetings) {
+                // Mettre à jour la liste de meetings
+                updateList(meetings);
+            }
+        });
         initRecyclerViews();
     }
 
@@ -49,8 +61,14 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
+    private void updateList(List<Meeting> listMeeting){
+        meetingList.clear();
+        meetingList.addAll(listMeeting);
+        adapter.notifyDataSetChanged();
+    }
+
     private void initRecyclerViews() {
-        final MeetingAdapter adapter = new MeetingAdapter(meetingList);
+        adapter = new MeetingAdapter(meetingList);
         RecyclerView recyclerView = binding.listMeetingRecyclerview;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);

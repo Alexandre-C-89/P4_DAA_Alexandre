@@ -4,11 +4,8 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.example.p4_daa_alexandre.BuildConfig;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
-import com.example.p4_daa_alexandre.utils.debug.Mock;
 
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -17,50 +14,21 @@ public class MeetingRepository {
 
     private final MutableLiveData<List<Meeting>> meetingsLiveData = new MutableLiveData<>();
 
-    private int highestMeetingId = 0;
-    private static MeetingRepository instance;
-
-    public List<Meeting> getMeetings() {
-        List<Meeting> meetings = meetingsLiveData.getValue();
-        if (meetings == null) {
-            meetings = new ArrayList<>();
-        }
-        return meetings;
+    @NonNull
+    public LiveData<List<Meeting>> getMeetingsLiveData() {
+        return meetingsLiveData;
     }
 
-    public void addMeeting(
-            @NonNull String topic,
-            @NonNull LocalTime time,
-            @NonNull List<String> participants,
-            //@NonNull Room room
-            @NonNull String room
-    ) {
+    public void addMeeting(Meeting meeting) {
         List<Meeting> currentList = meetingsLiveData.getValue();
 
         if (currentList == null) {
             currentList = new ArrayList<>();
         }
 
-        currentList.add(
-                new Meeting(
-                        highestMeetingId,
-                        topic,
-                        time,
-                        participants,
-                        room
-                )
-        );
-
-        highestMeetingId++;
+        currentList.add(meeting);
 
         meetingsLiveData.setValue(currentList);
-    }
-
-    public static MeetingRepository getInstance() {
-        if (instance == null) {
-            instance = new MeetingRepository();
-        }
-        return instance;
     }
 
     public void deleteMeeting(int meetingId) {
@@ -80,22 +48,5 @@ public class MeetingRepository {
         }
 
         meetingsLiveData.setValue(currentList);
-    }
-
-    @NonNull
-    public LiveData<List<Meeting>> getMeetingsLiveData() {
-        return meetingsLiveData;
-    }
-
-    // DEBUG
-    public void addDebugMeeting() {
-        if (BuildConfig.DEBUG) {
-            addMeeting(
-                    Mock.getRandomMeetingTopic(),
-                    Mock.getRandomMeetingHour(),
-                    Mock.getRandomMeetingParticipants(),
-                    Mock.getRandomMeetingRoom()
-            );
-        }
     }
 }
