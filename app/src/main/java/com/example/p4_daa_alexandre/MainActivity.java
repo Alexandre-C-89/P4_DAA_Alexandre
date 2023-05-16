@@ -1,5 +1,7 @@
 package com.example.p4_daa_alexandre;
 
+import static java.sql.DriverManager.println;
+
 import android.os.Bundle;
 import android.view.View;
 
@@ -44,6 +46,7 @@ public class MainActivity extends AppCompatActivity {
            public void onClick(View view) {
               // Créer une instance de CreateMeetingFragment
               CreateMeetingFragment createMeetingFragment = new CreateMeetingFragment();
+              println("Clique sur le bouton d'ajout de Meeting");
 
               // Ajouter le fragment au conteneur de fragment
               getSupportFragmentManager().beginTransaction()

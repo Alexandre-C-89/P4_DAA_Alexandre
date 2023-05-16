@@ -14,6 +14,18 @@
         app:layout_constraintRight_toRightOf="parent"
         />
 
+    <ImageButton
+        android:id="@+id/back_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackgroundBorderless"
+        android:contentDescription="@string/back_button_toolbar"
+        android:padding="16dp"
+        android:src="@drawable/ic_back_arrow"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/toolbar" />
+
+
     <com.google.android.material.textfield.TextInputEditText
         android:id="@+id/title_create_meeting_inputedittext"
         android:layout_width="wrap_content"

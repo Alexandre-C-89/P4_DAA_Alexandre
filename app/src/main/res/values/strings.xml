@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Meetings</string>
+    <string name="back_button_toolbar">back_arrow</string>
 </resources>

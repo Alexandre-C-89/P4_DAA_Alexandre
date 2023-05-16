@@ -34,7 +34,7 @@ public class HomeFragmentViewModel extends ViewModel {
 
         // -------------
 
-        public void createMeeting(int id, String title, LocalTime time, List<String> participants, String roomName) {
+        public void addMeeting(int id, String title, LocalTime time, List<String> participants, String roomName) {
 
                 mMeetingRepository.addMeeting(new Meeting(id, title, time, participants, roomName));
         }
