@@ -1,8 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="input_hour_meeting">Hour</string>
-    <string name="input_about_meeting">About</string>
-    <string name="input_mail_meeting">Mail</string>
-    <string name="title_addmeeting">Title of add meeting</string>
-    <string name="hour_addmeeting">Hour of add meeting</string>
+
 </resources>

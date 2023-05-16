@@ -42,8 +42,6 @@ dependencies {
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
-    testImplementation "io.mockk:mockk:1.1"
-    androidTestImplementation "io.mockk:mockk-android:1.1"
 
     // Helps testing livedata : InstantTaskExecutorRule, for example
     testImplementation 'androidx.arch.core:core-testing:2.2.0'
@@ -60,7 +58,4 @@ dependencies {
     androidTestUtil 'androidx.test:orchestrator:1.4.2'
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
-
-    implementation "androidx.activity:activity:1.8.0-alpha03"
-
 }

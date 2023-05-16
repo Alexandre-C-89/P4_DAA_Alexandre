@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel;
 import com.example.p4_daa_alexandre.data.meeting.MeetingRepository;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 
-import java.time.LocalTime;
 import java.util.List;
 
 public class HomeFragmentViewModel extends ViewModel {
@@ -20,23 +19,18 @@ public class HomeFragmentViewModel extends ViewModel {
 
         }
 
-        // -------------
-
-        // FOR MEETING
-
-        // -------------
-
+        /**
+         * Liste de meeting
+         */
         public LiveData<List<Meeting>> getMeetings() { return mMeetingRepository.getMeetingsLiveData();  }
 
-        // -------------
+        /**
+         * Création de meeting
+         */
 
-        // FOR ITEM
+        public void addMeeting(Meeting meeting) {
 
-        // -------------
-
-        public void addMeeting(int id, String title, LocalTime time, List<String> participants, String roomName) {
-
-                mMeetingRepository.addMeeting(new Meeting(id, title, time, participants, roomName));
+                mMeetingRepository.addMeeting(meeting);
         }
 
         public void deleteMeeting(int id) {
@@ -44,5 +38,4 @@ public class HomeFragmentViewModel extends ViewModel {
             mMeetingRepository.deleteMeeting(id);
 
         }
-
 }

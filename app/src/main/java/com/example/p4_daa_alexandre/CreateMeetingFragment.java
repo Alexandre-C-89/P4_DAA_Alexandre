@@ -1,5 +1,7 @@
 package com.example.p4_daa_alexandre;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,29 +9,39 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.FragmentCreateMeetingBinding;
+
+import java.time.LocalTime;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class CreateMeetingFragment extends Fragment {
 
     private FragmentCreateMeetingBinding binding;
+    private HomeFragmentViewModel mViewModel;
+
+
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        /**
+         * instance de HomeFragmentViewModel
+         */
+        mViewModel = new ViewModelProvider(requireActivity()).get(HomeFragmentViewModel.class);
+    }
+
 
     @NonNull
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentCreateMeetingBinding.inflate(inflater, container, false);
-
-        // Ajouter le bouton de retour en arrière dans la barre d'outils
-        //Toolbar toolbar = binding.toolbar;
-        binding.toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
-        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Simuler un appui sur le bouton de retour système
-                getActivity().onBackPressed();
-            }
-        });
-
+        initCreateButton();
         return binding.getRoot();
     }
 
@@ -37,5 +49,34 @@ public class CreateMeetingFragment extends Fragment {
     public void onDestroyView() {
         super.onDestroyView();
         binding = null;
+    }
+
+    private void initCreateButton() {
+        binding.createButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                int id = generateMeetingId();
+                String title = binding.titleCreateMeetingInputedittext.getText().toString();
+                LocalTime time = LocalTime.parse(binding.hourCreateMeetingInputedittext.getText().toString());
+                List<String> participants = Arrays.asList(binding.participantCreateMeetingInputedittext.getText().toString().split(", "));
+                String roomName = binding.roomNameCreateMeetingInputedittext.getText().toString();
+
+                // Ajouter une nouvelle réunion
+                mViewModel.addMeeting(new Meeting(id, title, time, participants, roomName));
+
+                // Retourner à la liste des réunions
+                requireActivity().getSupportFragmentManager().popBackStack();
+                Intent resultIntent = new Intent();
+                requireActivity().setResult(Activity.RESULT_OK, resultIntent);
+                requireActivity().finish();
+            }
+        });
+    }
+
+    /**
+     * Générer un nouveau ID
+     */
+    private int generateMeetingId() {
+        return Math.abs(new Random().nextInt());
     }
 }
