@@ -8,12 +8,12 @@ import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 
 import java.util.List;
 
-public class HomeFragmentViewModel extends ViewModel {
+public class CreateMeetingViewModel extends ViewModel {
 
         // REPOSITORIES
         private final MeetingRepository mMeetingRepository;
 
-        public HomeFragmentViewModel(MeetingRepository mMeetingRepository) {
+        public CreateMeetingViewModel(MeetingRepository mMeetingRepository) {
 
             this.mMeetingRepository = mMeetingRepository;
 

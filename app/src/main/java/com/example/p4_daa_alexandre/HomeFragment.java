@@ -1,5 +1,7 @@
 package com.example.p4_daa_alexandre;
 
+import static java.sql.DriverManager.println;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -15,8 +17,6 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.p4_daa_alexandre.DI.Di;
-import com.example.p4_daa_alexandre.data.meeting.MeetingRepository;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.FragmentHomeBinding;
 
@@ -26,8 +26,7 @@ import java.util.List;
 public class HomeFragment extends Fragment {
     private FragmentHomeBinding binding;
     private List<Meeting> meetingList = new ArrayList();
-    private HomeFragmentViewModel mViewModel;
-    private MeetingRepository mMeetingRepository;
+    private HomeViewModel mViewModel;
     private MeetingAdapter adapter;
 
     @Override
@@ -35,10 +34,8 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
 
-        mMeetingRepository = Di.getMeetingRepository();
-
         // Initialize the ViewModel with the MeetingRepository
-        mViewModel = new ViewModelProvider(this, new HomeFragmentViewModelFactory(mMeetingRepository)).get(HomeFragmentViewModel.class);
+        mViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(HomeViewModel.class);
 
         return binding.getRoot();
     }
@@ -55,6 +52,7 @@ public class HomeFragment extends Fragment {
             }
         });
         initRecyclerViews();
+        initAddButton();
 
         // Récupérer la nouvelle réunion passée en tant qu'argument
         Bundle args = getArguments();
@@ -92,4 +90,23 @@ public class HomeFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
     }
+
+    // AJouter au HomeFragment - ne pas oublier le XML
+    private void initAddButton() {
+        binding.addButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // Créer une instance de CreateMeetingFragment
+                CreateMeetingFragment createMeetingFragment = new CreateMeetingFragment();
+                println("Clique sur le bouton d'ajout de Meeting");
+
+                // Ajouter le fragment au conteneur de fragment
+                requireActivity().getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.container_fragment, createMeetingFragment)
+                        .addToBackStack(null)
+                        .commit();
+            }
+        });
+    }
+
 }

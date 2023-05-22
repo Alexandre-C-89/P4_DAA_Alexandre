@@ -1,9 +1,6 @@
 package com.example.p4_daa_alexandre;
 
-import static java.sql.DriverManager.println;
-
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,26 +30,7 @@ public class MainActivity extends AppCompatActivity {
                .commit();
        // Initialiser la liste de réunions
        mMeetings = new ArrayList<>();
-       initAddButton();
        setContentView(binding.getRoot());
 
    }
-
-    private void initAddButton() {
-        binding.addButton.setOnClickListener(new View.OnClickListener() {
-           @Override
-           public void onClick(View view) {
-              // Créer une instance de CreateMeetingFragment
-              CreateMeetingFragment createMeetingFragment = new CreateMeetingFragment();
-              println("Clique sur le bouton d'ajout de Meeting");
-
-              // Ajouter le fragment au conteneur de fragment
-              getSupportFragmentManager().beginTransaction()
-                      .replace(R.id.container_fragment, createMeetingFragment)
-                      .addToBackStack(null)
-                      .commit();
-           }
-        });
-    }
-
 }

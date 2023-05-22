@@ -1,48 +1,27 @@
 package com.example.p4_daa_alexandre;
 
-import android.os.Build;
-
-import androidx.annotation.NonNull;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.p4_daa_alexandre.DI.Di;
 import com.example.p4_daa_alexandre.data.meeting.MeetingRepository;
-
-import java.time.format.DateTimeFormatter;
 
 public class ViewModelFactory implements ViewModelProvider.Factory {
 
-    private static ViewModelFactory factory;
+    private final MeetingRepository mMeetingRepository;
 
-    public static ViewModelFactory getInstance() {
-        if (factory == null) {
-            synchronized (ViewModelFactory.class) {
-                if (factory == null) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                        factory = new ViewModelFactory(
-                                new MeetingRepository(),
-                                DateTimeFormatter.ofPattern("HH:mm")
-                        );
-                    }
-                }
-            }
+    public ViewModelFactory() {
+        mMeetingRepository = Di.getMeetingRepository();
+    }
+
+    @Override
+    public <T extends ViewModel> T create(Class<T> modelClass) {
+        if (modelClass.isAssignableFrom(HomeViewModel.class)) {
+            return (T) new HomeViewModel(mMeetingRepository);
         }
-
-        return factory;
+        if (modelClass.isAssignableFrom(CreateMeetingViewModel.class)) {
+            return (T) new CreateMeetingViewModel(mMeetingRepository);
+        }
+        throw new IllegalArgumentException("Unknown ViewModel class");
     }
-
-    @NonNull
-    private final MeetingRepository meetingRepository;
-    @NonNull
-    private final DateTimeFormatter hourDateTimeFormatter;
-
-    private ViewModelFactory(
-            @NonNull MeetingRepository meetingRepository,
-            @NonNull DateTimeFormatter hourDateTimeFormatter
-    ) {
-        this.meetingRepository = meetingRepository;
-        this.hourDateTimeFormatter = hourDateTimeFormatter;
-    }
-
-
-
 }

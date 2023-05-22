@@ -22,17 +22,18 @@ import java.util.Random;
 public class CreateMeetingFragment extends Fragment {
 
     private FragmentCreateMeetingBinding binding;
-    private HomeFragmentViewModel mViewModel;
-
-
+    private CreateMeetingViewModel mViewModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
         /**
          * instance de HomeFragmentViewModel
          */
-        mViewModel = new ViewModelProvider(requireActivity()).get(HomeFragmentViewModel.class);
+        // Initialize the ViewModel with the MeetingRepository
+        mViewModel = new ViewModelProvider(this, new ViewModelFactory()).get(CreateMeetingViewModel.class);
     }
 
 
@@ -57,6 +58,7 @@ public class CreateMeetingFragment extends Fragment {
             public void onClick(View view) {
                 int id = generateMeetingId();
                 String title = binding.titleCreateMeetingInputedittext.getText().toString();
+                // time Spiker - attention au format
                 LocalTime time = LocalTime.parse(binding.hourCreateMeetingInputedittext.getText().toString());
                 List<String> participants = Arrays.asList(binding.participantCreateMeetingInputedittext.getText().toString().split(", "));
                 String roomName = binding.roomNameCreateMeetingInputedittext.getText().toString();
@@ -68,6 +70,7 @@ public class CreateMeetingFragment extends Fragment {
                 requireActivity().getSupportFragmentManager().popBackStack();
                 Intent resultIntent = new Intent();
                 requireActivity().setResult(Activity.RESULT_OK, resultIntent);
+                // Peut fermer l'appli
                 requireActivity().finish();
             }
         });
