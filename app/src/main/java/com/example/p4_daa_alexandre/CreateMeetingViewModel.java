@@ -33,6 +33,7 @@ public class CreateMeetingViewModel extends ViewModel {
                 mMeetingRepository.addMeeting(meeting);
         }
 
+        // Pas sûre d'en avoir besoin ??
         public void deleteMeeting(int id) {
 
             mMeetingRepository.deleteMeeting(id);

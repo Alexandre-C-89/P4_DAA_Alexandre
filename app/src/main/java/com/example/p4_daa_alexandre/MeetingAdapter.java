@@ -28,7 +28,7 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
         public ViewHolder(View itemView) {
             super(itemView);
             mMeetingTitle = itemView.findViewById(R.id.title_create_meeting_inputedittext);
-            mMeetingHour = itemView.findViewById(R.id.hour_create_meeting_inputedittext);
+            mMeetingHour = itemView.findViewById(R.id.hour_selected_textView);
             mMeetingParticipants = itemView.findViewById(R.id.participant_create_meeting_inputedittext);
             mMeetingRoomName = itemView.findViewById(R.id.room_name_create_meeting_inputedittext);
         }
