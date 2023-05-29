@@ -29,6 +29,17 @@
         />
 
     <TextView
+        android:id="@+id/date_item_meeting_list_textview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="hour of meeting"
+        android:layout_marginStart="16dp"
+        android:textSize="12sp"
+        app:layout_constraintTop_toBottomOf="@id/title_item_meeting_list_textview"
+        app:layout_constraintLeft_toRightOf="@id/img_item_meeting_list_textview"
+        />
+
+    <TextView
         android:id="@+id/hour_item_meeting_list_textview"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

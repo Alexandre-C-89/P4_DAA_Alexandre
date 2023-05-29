@@ -2,6 +2,7 @@ package com.example.p4_daa_alexandre.data.meeting.model;
 
 import androidx.annotation.NonNull;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Objects;
@@ -17,6 +18,9 @@ public class Meeting {
     private final LocalTime time;
 
     @NonNull
+    private final LocalDate date;
+
+    @NonNull
     private final List<String> participants;
 
     @NonNull
@@ -26,12 +30,14 @@ public class Meeting {
             int id,
             @NonNull String title,
             @NonNull LocalTime time,
+            @NonNull LocalDate date,
             @NonNull List<String> participants,
             @NonNull String roomName
     ) {
         this.id = id;
         this.title = title;
         this.time = time;
+        this.date = date;
         this.participants = participants;
         this.roomName = roomName;
     }
@@ -48,6 +54,10 @@ public class Meeting {
     @NonNull
     public LocalTime getTime() {
         return time;
+    }
+    @NonNull
+    public LocalDate getDate() {
+        return date;
     }
 
     @NonNull
@@ -68,6 +78,7 @@ public class Meeting {
         return id == meeting.id &&
                 title.equals(meeting.title) &&
                 time.equals(meeting.time) &&
+                date.equals(meeting.date) &&
                 participants.equals(meeting.participants) &&
                 roomName == meeting.roomName;
     }
@@ -83,6 +94,7 @@ public class Meeting {
                 "id=" + id +
                 ", topic='" + title + '\'' +
                 ", time=" + time +
+                ", date=" + date +
                 ", participants=" + participants +
                 ", room=" + roomName +
                 '}';

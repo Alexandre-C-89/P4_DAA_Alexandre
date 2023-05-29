@@ -1,5 +1,6 @@
 package com.example.p4_daa_alexandre;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,24 +24,26 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
     // ViewHolder pour stocker les vues de l'élément de la liste de réunions
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private TextView mMeetingTitle;
-        private TextView mMeetingParticipants;
+        private TextView mMeetingDate;
         private TextView mMeetingHour;
+        private TextView mMeetingParticipants;
         private TextView mMeetingRoomName;
 
         public ViewHolder(View itemView) {
             super(itemView);
             mMeetingTitle = itemView.findViewById(R.id.title_item_meeting_list_textview);
-            //mMeetingHour = itemView.findViewById(R.id.hour_item_meeting_list_textview);
-            //mMeetingParticipants = itemView.findViewById(R.id.participant_name_item_meeting_list_textview);
+            mMeetingHour = itemView.findViewById(R.id.hour_item_meeting_list_textview);
+            mMeetingDate = itemView.findViewById(R.id.date_item_meeting_list_textview);
+            mMeetingParticipants = itemView.findViewById(R.id.participant_name_item_meeting_list_textview);
             mMeetingRoomName = itemView.findViewById(R.id.room_name_item_meeting_list_textview);
         }
 
         public void bind(Meeting meeting) {
             mMeetingTitle.setText(meeting.getTitle());
-            //mMeetingParticipants.setText(meeting.getParticipants());
-            //mMeetingHour.setText(meeting.getTime());
+            mMeetingParticipants.setText(TextUtils.join(", ", meeting.getParticipants()));
+            mMeetingHour.setText(meeting.getTime().toString()); // Convert LocalTime to String
+            mMeetingDate.setText(meeting.getDate().toString()); // Convert LocalDateTime to String
             mMeetingRoomName.setText(meeting.getRoomName());
-
         }
     }
 
