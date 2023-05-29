@@ -34,10 +34,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Hour selected"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_margin="16dp"
         app:layout_constraintTop_toBottomOf="@+id/choose_time_button"
+        app:layout_constraintLeft_toLeftOf="parent"
+        />
+
+    <Button
+        android:id="@+id/choose_date_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Open Date Picker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hour_selected_textView" />
+
+    <TextView
+        android:id="@+id/date_selected_textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Date selected"
+        android:layout_margin="16dp"
+        app:layout_constraintTop_toBottomOf="@+id/choose_date_button"
         app:layout_constraintLeft_toLeftOf="parent"
         />
 

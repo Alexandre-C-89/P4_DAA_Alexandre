@@ -4,7 +4,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
 import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 
 import java.util.List;
@@ -27,10 +29,10 @@ public class MeetingAdapter extends RecyclerView.Adapter<MeetingAdapter.ViewHold
 
         public ViewHolder(View itemView) {
             super(itemView);
-            mMeetingTitle = itemView.findViewById(R.id.title_create_meeting_inputedittext);
-            mMeetingHour = itemView.findViewById(R.id.hour_selected_textView);
-            mMeetingParticipants = itemView.findViewById(R.id.participant_create_meeting_inputedittext);
-            mMeetingRoomName = itemView.findViewById(R.id.room_name_create_meeting_inputedittext);
+            mMeetingTitle = itemView.findViewById(R.id.title_item_meeting_list_textview);
+            //mMeetingHour = itemView.findViewById(R.id.hour_item_meeting_list_textview);
+            //mMeetingParticipants = itemView.findViewById(R.id.participant_name_item_meeting_list_textview);
+            mMeetingRoomName = itemView.findViewById(R.id.room_name_item_meeting_list_textview);
         }
 
         public void bind(Meeting meeting) {

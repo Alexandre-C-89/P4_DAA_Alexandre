@@ -1,8 +1,6 @@
 package com.example.p4_daa_alexandre;
 
-import android.app.Activity;
 import android.app.TimePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -76,11 +74,7 @@ public class CreateMeetingFragment extends DialogFragment implements TimePickerD
                     mViewModel.addMeeting(new Meeting(id, title, time, participants, roomName));
 
                     // Retourner à la liste des réunions
-                    requireActivity().getSupportFragmentManager().popBackStack();
-                    Intent resultIntent = new Intent();
-                    requireActivity().setResult(Activity.RESULT_OK, resultIntent);
-                    requireActivity().getSupportFragmentManager().beginTransaction()
-                            .replace(R.id.container_fragment, homeFragment);
+                    requireActivity().getSupportFragmentManager().popBackStackImmediate();
                 } else {
                     // Affiche un message d'erreur ou effectue une autre action appropriée si l'heure n'a pas été sélectionnée
                 }
@@ -100,10 +94,6 @@ public class CreateMeetingFragment extends DialogFragment implements TimePickerD
     }
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-        binding.hourSelectedTextView.setText("Hour: " + hourOfDay + " Minute: " + minute);
-    }
-
-    public void onTimeSelected(int hourOfDay, int minute) {
         selectedHour = hourOfDay;
         selectedMinute = minute;
         binding.hourSelectedTextView.setText("Hour: " + hourOfDay + " Minute: " + minute);
