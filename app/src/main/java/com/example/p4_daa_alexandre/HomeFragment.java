@@ -58,6 +58,8 @@ public class HomeFragment extends Fragment {
         Bundle args = getArguments();
         if (args != null && args.containsKey("newMeeting")) {
             Meeting newMeeting = args.getParcelable("newMeeting");
+            // Ajouter la nouvelle réunion à la liste des réunions
+            mViewModel.addMeeting(newMeeting);
         }
     }
 
@@ -86,6 +88,15 @@ public class HomeFragment extends Fragment {
 
     private void initRecyclerViews() {
         adapter = new MeetingAdapter(meetingList);
+        adapter.setOnItemClickListener(new MeetingAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                // Ici, tu peux gérer les clics sur les éléments de la liste
+                // Avant la suppression ou effectuer d'autres actions si nécessaire
+                deleteMeeting(position);
+            }
+        });
+
         RecyclerView recyclerView = binding.listMeetingRecyclerview;
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
@@ -107,6 +118,11 @@ public class HomeFragment extends Fragment {
                         .commit();
             }
         });
+    }
+
+    private void deleteMeeting(int position) {
+        // Supprimer la réunion du ViewModel
+        mViewModel.deleteMeeting(position);
     }
 
 }
