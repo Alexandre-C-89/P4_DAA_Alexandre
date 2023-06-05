@@ -125,4 +125,10 @@ public class HomeFragment extends Fragment {
         mViewModel.deleteMeeting(position);
     }
 
+    public void updateFilterList(List<Meeting> meetings) {
+        meetingList.clear();
+        meetingList.addAll(meetings);
+        adapter.notifyDataSetChanged();
+    }
+
 }

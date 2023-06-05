@@ -8,7 +8,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.p4_daa_alexandre"
-        minSdk 24
+        minSdk 21
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -58,4 +58,6 @@ dependencies {
     androidTestUtil 'androidx.test:orchestrator:1.4.2'
 
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+
+    implementation 'com.google.android.material:material:1.9.0'
 }
