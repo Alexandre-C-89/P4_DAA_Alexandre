@@ -1,6 +1,7 @@
 package com.example.p4_daa_alexandre;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -12,9 +13,8 @@ import androidx.appcompat.widget.Toolbar;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.ActivityMainBinding;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -89,14 +89,17 @@ public class MainActivity extends AppCompatActivity {
    }
 
    private void handleFilterToday() {
-      // Obtenir la date d'aujourd'hui
-      Calendar calendar = Calendar.getInstance();
-      Date today = calendar.getTime();
+      // Obtenir la date d'aujourd'hui en tant que LocalDate
+      LocalDate today = LocalDate.now();
 
       // Filtrer les réunions par la date d'aujourd'hui
       List<Meeting> filteredMeetings = new ArrayList<>();
       for (Meeting meeting : mMeetings) {
-         if (isSameDay(meeting.getDate(), today)) {
+         LocalDate meetingDate = meeting.getDate();
+         Log.d("Date", "Meeting date: " + meetingDate);
+         Log.d("Date", "Today's date: " + today);
+
+         if (isSameDay(meetingDate, today)) {
             filteredMeetings.add(meeting);
          }
       }
@@ -105,14 +108,9 @@ public class MainActivity extends AppCompatActivity {
       HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.container_fragment);
       homeFragment.updateFilterList(filteredMeetings);
    }
-   private boolean isSameDay(Date date1, Date date2) {
-      Calendar cal1 = Calendar.getInstance();
-      Calendar cal2 = Calendar.getInstance();
-      cal1.setTime(date1);
-      cal2.setTime(date2);
-      return cal1.get(Calendar.YEAR) == cal2.get(Calendar.YEAR)
-              && cal1.get(Calendar.MONTH) == cal2.get(Calendar.MONTH)
-              && cal1.get(Calendar.DAY_OF_MONTH) == cal2.get(Calendar.DAY_OF_MONTH);
+
+   private boolean isSameDay(LocalDate date1, LocalDate date2) {
+      return date1.isEqual(date2);
    }
 
 }
