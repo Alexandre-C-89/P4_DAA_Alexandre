@@ -9,7 +9,7 @@ import java.util.Objects;
 
 public class Meeting {
 
-    private final int id;
+    private final int id = 0;
 
     @NonNull
     private final String title;
@@ -27,14 +27,12 @@ public class Meeting {
     private final String roomName;
 
     public Meeting(
-            int id,
             @NonNull String title,
             @NonNull LocalTime time,
             @NonNull LocalDate date,
             @NonNull List<String> participants,
             @NonNull String roomName
     ) {
-        this.id = id;
         this.title = title;
         this.time = time;
         this.date = date;

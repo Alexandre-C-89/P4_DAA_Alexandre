@@ -11,7 +11,7 @@ import java.util.List;
 public abstract class DummyMeetingGenerator {
 
     public static List<Meeting> DUMMY_MEETING = Arrays.asList(
-            new Meeting(1, "Caroline", LocalTime.of(10, 30), LocalDate.of(2023, 10, 2), Arrays.asList("joe", "Alex"),
+            new Meeting( "Caroline", LocalTime.of(10, 30), LocalDate.of(2023, 10, 2), Arrays.asList("joe", "Alex"),
                     "Metallica")
             );
 

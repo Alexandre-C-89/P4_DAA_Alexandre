@@ -8,23 +8,26 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
+
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.FragmentCreateMeetingBinding;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Random;
 
 public class CreateMeetingFragment extends DialogFragment implements TimePickerDialog.OnTimeSetListener, DatePickerDialog.OnDateSetListener{
 
     private FragmentCreateMeetingBinding binding;
     private CreateMeetingViewModel mViewModel;
     private HomeFragment homeFragment;
+
     private int selectedHour;
     private int selectedMinute;
     private int selectedDay = -1;
@@ -63,7 +66,6 @@ public class CreateMeetingFragment extends DialogFragment implements TimePickerD
         binding.createButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                int id = generateMeetingId();
                 String title = binding.titleCreateMeetingInputedittext.getText().toString();
                 List<String> participants = Arrays.asList(binding.participantCreateMeetingInputedittext.getText().toString().split(", "));
                 String roomName = binding.roomNameCreateMeetingInputedittext.getText().toString();
@@ -76,7 +78,7 @@ public class CreateMeetingFragment extends DialogFragment implements TimePickerD
                     LocalDate date = LocalDate.of(selectedYear, selectedMonth, selectedDay);
 
                     // Ajoute une nouvelle réunion avec l'heure sélectionnée
-                    mViewModel.addMeeting(new Meeting(id, title, time, date, participants, roomName));
+                    mViewModel.addMeeting(new Meeting(title, time, date, participants, roomName));
 
                     // Retourner à la liste des réunions
                     requireActivity().getSupportFragmentManager().popBackStackImmediate();
@@ -127,12 +129,5 @@ public class CreateMeetingFragment extends DialogFragment implements TimePickerD
         selectedMonth = month + 1; // Ajoute 1 au mois sélectionné
 
         binding.dateSelectedTextView.setText("Day: " + dayOfMonth + " Year: " + year);
-    }
-
-    /**
-     * Générer un nouveau ID
-     */
-    private int generateMeetingId() {
-        return Math.abs(new Random().nextInt());
     }
 }

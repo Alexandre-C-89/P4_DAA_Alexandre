@@ -7,7 +7,6 @@ import androidx.lifecycle.MutableLiveData;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class MeetingRepository {
@@ -37,16 +36,7 @@ public class MeetingRepository {
         if (currentList == null) {
             currentList = new ArrayList<>();
         }
-
-        for (Iterator<Meeting> iterator = currentList.iterator(); iterator.hasNext(); ) {
-            Meeting meeting = iterator.next();
-
-            if (meeting.getId() == meetingId) {
-                iterator.remove();
-                break;
-            }
-        }
-
+        currentList.remove(meetingId);
         meetingsLiveData.setValue(currentList);
     }
 }
