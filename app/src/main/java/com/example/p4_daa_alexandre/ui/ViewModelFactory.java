@@ -1,10 +1,12 @@
-package com.example.p4_daa_alexandre;
+package com.example.p4_daa_alexandre.ui;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.p4_daa_alexandre.DI.Di;
 import com.example.p4_daa_alexandre.data.meeting.MeetingRepository;
+import com.example.p4_daa_alexandre.ui.create.CreateMeetingViewModel;
+import com.example.p4_daa_alexandre.ui.home.HomeViewModel;
 
 public class ViewModelFactory implements ViewModelProvider.Factory {
 

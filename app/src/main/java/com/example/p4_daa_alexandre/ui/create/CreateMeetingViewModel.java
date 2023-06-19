@@ -1,4 +1,4 @@
-package com.example.p4_daa_alexandre;
+package com.example.p4_daa_alexandre.ui.create;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
@@ -8,12 +8,12 @@ import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 
 import java.util.List;
 
-public class HomeViewModel extends ViewModel {
+public class CreateMeetingViewModel extends ViewModel {
 
         // REPOSITORIES
         private final MeetingRepository mMeetingRepository;
 
-        public HomeViewModel(MeetingRepository mMeetingRepository) {
+        public CreateMeetingViewModel(MeetingRepository mMeetingRepository) {
 
             this.mMeetingRepository = mMeetingRepository;
 
@@ -33,6 +33,7 @@ public class HomeViewModel extends ViewModel {
                 mMeetingRepository.addMeeting(meeting);
         }
 
+        // Pas sûre d'en avoir besoin ??
         public void deleteMeeting(int id) {
 
             mMeetingRepository.deleteMeeting(id);

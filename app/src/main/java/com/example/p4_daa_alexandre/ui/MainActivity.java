@@ -1,7 +1,6 @@
-package com.example.p4_daa_alexandre;
+package com.example.p4_daa_alexandre.ui;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -10,8 +9,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
 
+import com.example.p4_daa_alexandre.R;
+import com.example.p4_daa_alexandre.data.meeting.MeetingRepository;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.ActivityMainBinding;
+import com.example.p4_daa_alexandre.ui.home.HomeFragment;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
    private List<Meeting> mMeetings;
 
    private Toolbar toolbar;
+
+   private MeetingRepository meetingRepository;
 
    @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -74,10 +78,13 @@ public class MainActivity extends AppCompatActivity {
                   // Action pour filtrer par aujourd'hui
                   handleFilterToday();
                   return true;
-               /**case R.id.filter_this_week:
+               /**case R.id.filter_room:
                   // Action pour filtrer par cette semaine
                   handleFilterThisWeek();
                   return true;*/
+               /**
+                * choix pour reset
+                */
                // Ajoute d'autres cas pour les autres choix du menu contextuel si nécessaire
             }
             return false;
@@ -89,24 +96,7 @@ public class MainActivity extends AppCompatActivity {
    }
 
    private void handleFilterToday() {
-      // Obtenir la date d'aujourd'hui en tant que LocalDate
-      LocalDate today = LocalDate.now();
-
-      // Filtrer les réunions par la date d'aujourd'hui
-      List<Meeting> filteredMeetings = new ArrayList<>();
-      for (Meeting meeting : mMeetings) {
-         LocalDate meetingDate = meeting.getDate();
-         Log.d("Date", "Meeting date: " + meetingDate);
-         Log.d("Date", "Today's date: " + today);
-
-         if (isSameDay(meetingDate, today)) {
-            filteredMeetings.add(meeting);
-         }
-      }
-
-      // Mettre à jour la liste des réunions dans le fragment HomeFragment
-      HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.container_fragment);
-      homeFragment.updateFilterList(filteredMeetings);
+         meetingRepository.filterDay(mMeetings);
    }
 
    private boolean isSameDay(LocalDate date1, LocalDate date2) {

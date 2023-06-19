@@ -14,7 +14,7 @@
         tools:targetApi="tiramisu"
         >
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.MainActivity"
             android:exported="true"
             tools:ignore="Instantiatable">
             <intent-filter>

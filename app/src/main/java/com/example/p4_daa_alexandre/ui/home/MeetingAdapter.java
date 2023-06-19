@@ -1,4 +1,4 @@
-package com.example.p4_daa_alexandre;
+package com.example.p4_daa_alexandre.ui.home;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
@@ -10,6 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.p4_daa_alexandre.R;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 
 import java.util.List;

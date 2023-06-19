@@ -1,4 +1,4 @@
-package com.example.p4_daa_alexandre;
+package com.example.p4_daa_alexandre.ui.create;
 
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
@@ -13,6 +13,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
 
+import com.example.p4_daa_alexandre.ui.home.HomeFragment;
+import com.example.p4_daa_alexandre.ui.ViewModelFactory;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.FragmentCreateMeetingBinding;
 

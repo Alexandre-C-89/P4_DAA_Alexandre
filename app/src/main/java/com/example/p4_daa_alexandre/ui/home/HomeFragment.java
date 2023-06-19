@@ -1,4 +1,4 @@
-package com.example.p4_daa_alexandre;
+package com.example.p4_daa_alexandre.ui.home;
 
 import static java.sql.DriverManager.println;
 
@@ -17,8 +17,11 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.p4_daa_alexandre.R;
+import com.example.p4_daa_alexandre.ui.ViewModelFactory;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.FragmentHomeBinding;
+import com.example.p4_daa_alexandre.ui.create.CreateMeetingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
