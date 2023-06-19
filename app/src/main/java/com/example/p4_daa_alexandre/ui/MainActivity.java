@@ -15,7 +15,6 @@ import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.ActivityMainBinding;
 import com.example.p4_daa_alexandre.ui.home.HomeFragment;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
                .commit();
        // Initialiser la liste de réunions
        mMeetings = new ArrayList<>();
+       meetingRepository = new MeetingRepository();
        setContentView(binding.getRoot());
    }
 
@@ -97,10 +97,6 @@ public class MainActivity extends AppCompatActivity {
 
    private void handleFilterToday() {
          meetingRepository.filterDay(mMeetings);
-   }
-
-   private boolean isSameDay(LocalDate date1, LocalDate date2) {
-      return date1.isEqual(date2);
    }
 
 }

@@ -17,6 +17,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.p4_daa_alexandre.ui.MeetingAdapter;
 import com.example.p4_daa_alexandre.R;
 import com.example.p4_daa_alexandre.ui.ViewModelFactory;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;

@@ -68,4 +68,8 @@ public class MeetingRepository {
         HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.container_fragment);
         homeFragment.updateFilterList(filteredMeetings);
     }
+
+    private boolean isSameDay(LocalDate date1, LocalDate date2) {
+        return date1.isEqual(date2);
+    }
 }

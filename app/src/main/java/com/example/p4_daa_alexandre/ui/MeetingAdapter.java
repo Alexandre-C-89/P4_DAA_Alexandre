@@ -1,4 +1,4 @@
-package com.example.p4_daa_alexandre.ui.home;
+package com.example.p4_daa_alexandre.ui;
 
 import android.text.TextUtils;
 import android.view.LayoutInflater;
