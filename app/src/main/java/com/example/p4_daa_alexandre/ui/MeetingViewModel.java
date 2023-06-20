@@ -11,21 +11,27 @@ import java.util.List;
 public class MeetingViewModel extends ViewModel {
     private MeetingRepository meetingRepository;
     private LiveData<List<Meeting>> filteredMeetingsLiveData;
+    private LiveData<List<Meeting>> filteredMeetingsByRoomLiveData;
 
     public MeetingViewModel() {
         meetingRepository = new MeetingRepository();
         filteredMeetingsLiveData = meetingRepository.getFilteredMeetingsLiveData();
+        filteredMeetingsByRoomLiveData = meetingRepository.getFilteredMeetingsByRoomLiveData();
     }
 
     public LiveData<List<Meeting>> getFilteredMeetingsLiveData() {
         return filteredMeetingsLiveData;
     }
 
-    public void addMeeting(Meeting meeting) {
-        meetingRepository.addMeeting(meeting);
+    /**
+     * Reset du filtre
+     * @return
+     */
+    public LiveData<List<Meeting>> getResetFilter() {
+        return meetingRepository.getMeetingsLiveData();
     }
 
-    public void deleteMeeting(int meetingId) {
-        meetingRepository.deleteMeeting(meetingId);
+    public LiveData<List<Meeting>> getFilteredMeetingsByRoomLiveData() {
+        return filteredMeetingsByRoomLiveData;
     }
 }

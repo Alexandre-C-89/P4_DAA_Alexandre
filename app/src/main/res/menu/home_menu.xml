@@ -13,8 +13,11 @@
                 android:id="@+id/filter_today"
                 android:title="Today" />
             <item
-                android:id="@+id/filter_this_week"
+                android:id="@+id/filter_room"
                 android:title="Room" />
+            <item
+                android:id="@+id/filter_reset"
+                android:title="Reset Filter" />
         </menu>
     </item>
 </menu>

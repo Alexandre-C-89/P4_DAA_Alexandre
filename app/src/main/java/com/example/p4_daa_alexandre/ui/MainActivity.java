@@ -77,14 +77,16 @@ public class MainActivity extends AppCompatActivity {
                   // Action pour filtrer par aujourd'hui
                   handleFilterToday();
                   return true;
-               /**case R.id.filter_room:
+               case R.id.filter_room:
                   // Action pour filtrer par cette semaine
-                  handleFilterThisWeek();
-                  return true;*/
+                  handleFilterRoom();
+                  return true;
                /**
                 * choix pour reset
                 */
-               // Ajoute d'autres cas pour les autres choix du menu contextuel si nécessaire
+               case R.id.filter_reset:
+                  handlefilterReset();
+                  return true;
             }
             return false;
          }
@@ -100,6 +102,26 @@ public class MainActivity extends AppCompatActivity {
          public void onChanged(List<Meeting> filteredMeetings) {
             HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.container_fragment);
             homeFragment.updateFilterList(filteredMeetings);
+         }
+      });
+   }
+
+   private void handlefilterReset() {
+      meetingViewModel.getResetFilter().observe(this, new Observer<List<Meeting>>() {
+         @Override
+         public void onChanged(List<Meeting> meetings) {
+            HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.container_fragment);
+            homeFragment.updateFilterList(meetings);
+         }
+      });
+   }
+
+   private void handleFilterRoom() {
+      meetingViewModel.getFilteredMeetingsByRoomLiveData().observe(this, new Observer<List<Meeting>>() {
+         @Override
+         public  void onChanged(List<Meeting> filteredMeetingsByRoom) {
+            HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.container_fragment);
+            homeFragment.updateFilterList(filteredMeetingsByRoom);
          }
       });
    }

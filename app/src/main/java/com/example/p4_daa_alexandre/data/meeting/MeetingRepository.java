@@ -68,4 +68,19 @@ public class MeetingRepository {
         });
     }
 
+    public LiveData<List<Meeting>> getFilteredMeetingsByRoomLiveData(final int roomId) {
+        return Transformations.map(meetingsLiveData, new Function<List<Meeting>, List<Meeting>>() {
+            @Override
+            public List<Meeting> apply(List<Meeting> meetings) {
+                List<Meeting> filteredMeetings = new ArrayList<>();
+                for (Meeting meeting : meetings) {
+                    if (meeting.getRoomId() == roomId) {
+                        filteredMeetings.add(meeting);
+                    }
+                }
+                return filteredMeetings;
+            }
+        });
+    }
+
 }
