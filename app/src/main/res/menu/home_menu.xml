@@ -14,7 +14,7 @@
                 android:title="Today" />
             <item
                 android:id="@+id/filter_this_week"
-                android:title="This Week" />
+                android:title="Room" />
         </menu>
     </item>
 </menu>
