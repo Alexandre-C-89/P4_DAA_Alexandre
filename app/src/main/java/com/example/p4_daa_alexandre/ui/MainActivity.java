@@ -7,7 +7,8 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
-import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.p4_daa_alexandre.R;
 import com.example.p4_daa_alexandre.data.meeting.MeetingRepository;
@@ -22,28 +23,26 @@ public class MainActivity extends AppCompatActivity {
 
    private ActivityMainBinding binding;
    private List<Meeting> mMeetings;
-
-   private Toolbar toolbar;
-
    private MeetingRepository meetingRepository;
+   private MeetingViewModel meetingViewModel;
 
    @Override
-    protected void onCreate(Bundle savedInstanceState){
-       super.onCreate(savedInstanceState);
-       binding = ActivityMainBinding.inflate(getLayoutInflater());
-       /**
-        * Toolbar
-        */
-       setSupportActionBar(binding.toolbar);
-       HomeFragment homeFragment = new HomeFragment();
-       getSupportFragmentManager().beginTransaction()
-               .replace(R.id.container_fragment, homeFragment)
-               .addToBackStack(null)
-               .commit();
-       // Initialiser la liste de réunions
-       mMeetings = new ArrayList<>();
-       meetingRepository = new MeetingRepository();
-       setContentView(binding.getRoot());
+   protected void onCreate(Bundle savedInstanceState){
+      super.onCreate(savedInstanceState);
+      binding = ActivityMainBinding.inflate(getLayoutInflater());
+      /**
+       * Toolbar
+       */
+      setSupportActionBar(binding.toolbar);
+      HomeFragment homeFragment = new HomeFragment();
+      getSupportFragmentManager().beginTransaction()
+              .replace(R.id.container_fragment, homeFragment)
+              .addToBackStack(null)
+              .commit();
+      // Initialiser la liste de réunions
+      mMeetings = new ArrayList<>();
+      meetingViewModel = new ViewModelProvider(this).get(MeetingViewModel.class);
+      setContentView(binding.getRoot());
    }
 
    @Override
@@ -96,7 +95,13 @@ public class MainActivity extends AppCompatActivity {
    }
 
    private void handleFilterToday() {
-         meetingRepository.filterDay(mMeetings);
+      meetingViewModel.getFilteredMeetingsLiveData().observe(this, new Observer<List<Meeting>>() {
+         @Override
+         public void onChanged(List<Meeting> filteredMeetings) {
+            HomeFragment homeFragment = (HomeFragment) getSupportFragmentManager().findFragmentById(R.id.container_fragment);
+            homeFragment.updateFilterList(filteredMeetings);
+         }
+      });
    }
 
 }
