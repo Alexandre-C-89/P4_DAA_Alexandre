@@ -2,7 +2,6 @@ package com.example.p4_daa_alexandre.ui;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
-
 import com.example.p4_daa_alexandre.data.meeting.MeetingRepository;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 
@@ -15,23 +14,9 @@ public class MeetingViewModel extends ViewModel {
 
     public MeetingViewModel() {
         meetingRepository = new MeetingRepository();
-        filteredMeetingsLiveData = meetingRepository.getFilteredMeetingsLiveData();
-        filteredMeetingsByRoomLiveData = meetingRepository.getFilteredMeetingsByRoomLiveData();
     }
 
     public LiveData<List<Meeting>> getFilteredMeetingsLiveData() {
         return filteredMeetingsLiveData;
-    }
-
-    /**
-     * Reset du filtre
-     * @return
-     */
-    public LiveData<List<Meeting>> getResetFilter() {
-        return meetingRepository.getMeetingsLiveData();
-    }
-
-    public LiveData<List<Meeting>> getFilteredMeetingsByRoomLiveData() {
-        return filteredMeetingsByRoomLiveData;
     }
 }

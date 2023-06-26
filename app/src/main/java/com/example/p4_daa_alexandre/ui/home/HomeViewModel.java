@@ -38,4 +38,15 @@ public class HomeViewModel extends ViewModel {
             mMeetingRepository.deleteMeeting(id);
 
         }
+
+        /**
+         * filtrer les meetings
+         */
+        public LiveData<List<Meeting>> getFilterMeeting() { return mMeetingRepository.getFilteredMeetingsLiveData();  }
+
+        /**
+         * filtrer les meetings
+         */
+        public LiveData<List<Meeting>> getFilterMeetingByRoomName() { return mMeetingRepository.getFilteredMeetingsByRoomLiveData("");  }
+
 }
