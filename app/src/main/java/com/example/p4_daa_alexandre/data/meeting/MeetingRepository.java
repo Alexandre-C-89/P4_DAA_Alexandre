@@ -46,26 +46,18 @@ public class MeetingRepository {
     /**
      * Méthode filter
      */
-    private boolean isSameDay(LocalDate date1, LocalDate date2) {
-        return date1.isEqual(date2);
-    }
+    public void filterMeetingsByDate(LocalDate selectedDate) {
+        List<Meeting> allMeetings = meetingsLiveData.getValue();
 
-    public LiveData<List<Meeting>> getFilteredMeetingsLiveData() {
-        return Transformations.map(meetingsLiveData, new Function<List<Meeting>, List<Meeting>>() {
-            @Override
-            public List<Meeting> apply(List<Meeting> meetings) {
-                // Filtrer les réunions par la date d'aujourd'hui
-                LocalDate today = LocalDate.now();
-                List<Meeting> filteredMeetings = new ArrayList<>();
-                for (Meeting meeting : meetings) {
-                    LocalDate meetingDate = meeting.getDate();
-                    if (isSameDay(meetingDate, today)) {
-                        filteredMeetings.add(meeting);
-                    }
+        if (allMeetings != null && selectedDate != null) {
+            List<Meeting> filteredMeetings = new ArrayList<>();
+            for (Meeting meeting : allMeetings) {
+                if (meeting.getDate().isEqual(selectedDate)) {
+                    filteredMeetings.add(meeting);
                 }
-                return filteredMeetings;
             }
-        });
+            meetingsLiveData.setValue(filteredMeetings);
+        }
     }
 
     public LiveData<List<Meeting>> getFilteredMeetingsByRoomLiveData(final String roomName) {

@@ -1,8 +1,10 @@
 package com.example.p4_daa_alexandre.ui;
 
+import android.app.DatePickerDialog;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.DatePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -13,20 +15,21 @@ import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.ActivityMainBinding;
 import com.example.p4_daa_alexandre.ui.home.HomeFragment;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
    private ActivityMainBinding binding;
-   private List<Meeting> mMeetings;
-   private MeetingRepository meetingRepository;
-   private MeetingViewModel meetingViewModel;
+   //private List<Meeting> mMeetings;
+   private MeetingViewModel mViewModel;
 
-   @Override
    protected void onCreate(Bundle savedInstanceState){
       super.onCreate(savedInstanceState);
       binding = ActivityMainBinding.inflate(getLayoutInflater());
+
       /**
        * Toolbar
        */
@@ -36,11 +39,12 @@ public class MainActivity extends AppCompatActivity {
               .replace(R.id.container_fragment, homeFragment)
               .addToBackStack(null)
               .commit();
-      // Initialiser la liste de réunions
-      mMeetings = new ArrayList<>();
-      meetingViewModel = new ViewModelProvider(this).get(MeetingViewModel.class);
+
+      mViewModel = new ViewModelProvider(this).get(MeetingViewModel.class);
+
       setContentView(binding.getRoot());
    }
+
 
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
@@ -52,11 +56,11 @@ public class MainActivity extends AppCompatActivity {
    public boolean onOptionsItemSelected(MenuItem item) {
       switch (item.getItemId()) {
          case R.id.filter_today:
-            // Action pour filtrer par aujourd'hui
+            // Action pour filtrer par jour
             handleFilterToday();
             return true;
          case R.id.filter_room:
-            // Action pour filtrer par cette semaine
+            // Action pour filtrer par salle de réunion
             handleFilterRoom();
             return true;
          /**
@@ -70,10 +74,29 @@ public class MainActivity extends AppCompatActivity {
    }
 
    private void handleFilterToday() {
+      DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
+         @Override
+         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            // La date a été sélectionnée, vous pouvez effectuer les actions nécessaires ici
+            // Par exemple, vous pouvez mettre à jour votre liste de réunions avec la date sélectionnée
+            LocalDate selectedDate = LocalDate.of(year, monthOfYear + 1, dayOfMonth);
+            filterMeetingsByDate(selectedDate);
+         }
+      };
 
-      /**
-       * Date picker pour choisir la date
-       */
+      // Récupérez la date actuelle pour initialiser le DatePickerDialog
+      Calendar calendar = Calendar.getInstance();
+      int year = calendar.get(Calendar.YEAR);
+      int month = calendar.get(Calendar.MONTH);
+      int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+      // Créez et affichez le DatePickerDialog
+      DatePickerDialog datePickerDialog = new DatePickerDialog(this, dateSetListener, year, month, day);
+      datePickerDialog.show();
+   }
+
+   private void filterMeetingsByDate(LocalDate selectedDate) {
+      mViewModel.filterMeetingsByDate(selectedDate);
    }
 
    private void handlefilterReset() {
