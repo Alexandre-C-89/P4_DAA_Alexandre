@@ -46,18 +46,22 @@ public class MeetingRepository {
     /**
      * Méthode filter
      */
-    public void filterMeetingsByDate(LocalDate selectedDate) {
-        List<Meeting> allMeetings = meetingsLiveData.getValue();
-
-        if (allMeetings != null && selectedDate != null) {
-            List<Meeting> filteredMeetings = new ArrayList<>();
-            for (Meeting meeting : allMeetings) {
-                if (meeting.getDate().isEqual(selectedDate)) {
-                    filteredMeetings.add(meeting);
+    public LiveData<List<Meeting>> filterMeetingsByDate(LocalDate selectedDate) {
+        LiveData<List<Meeting>> allMeetingsLiveData = meetingsLiveData;
+        LiveData<List<Meeting>> filteredMeetingsLiveData = Transformations.map(allMeetingsLiveData, new Function<List<Meeting>, List<Meeting>>() {
+            @Override
+            public List<Meeting> apply(List<Meeting> meetings) {
+                List<Meeting> filteredMeetings = new ArrayList<>();
+                for (Meeting meeting : meetings) {
+                    LocalDate meetingDate = meeting.getDate();
+                    if (meetingDate.isEqual(selectedDate)) {
+                        filteredMeetings.add(meeting);
+                    }
                 }
+                return filteredMeetings;
             }
-            meetingsLiveData.setValue(filteredMeetings);
-        }
+        });
+        return filteredMeetingsLiveData;
     }
 
     public LiveData<List<Meeting>> getFilteredMeetingsByRoomLiveData(final String roomName) {
