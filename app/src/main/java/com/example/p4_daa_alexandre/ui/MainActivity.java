@@ -8,7 +8,6 @@ import android.widget.DatePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
-import androidx.core.view.MenuItemCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.p4_daa_alexandre.R;
@@ -57,7 +56,7 @@ public class MainActivity extends AppCompatActivity {
             // Action pour filtrer par jour
             handleFilterToday();
             return true;
-         case R.id.filter_room:
+         case R.id.search_room:
             // Action pour filtrer par salle de réunion
             handleFilterRoom();
             return true;
@@ -105,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
    }
 
    private void handleFilterRoom() {
-      SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchViewItem);
+      MenuItem menuItem = binding.toolbar.getMenu().findItem(R.id.search_room);
+      SearchView searchView = (SearchView) menuItem.getActionView();
       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
          @Override
          public boolean onQueryTextSubmit(String roomName) {
