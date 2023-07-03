@@ -104,8 +104,8 @@ public class MainActivity extends AppCompatActivity {
    }
 
    private void handleFilterRoom() {
-      MenuItem menuItem = binding.toolbar.getMenu().findItem(R.id.search_room);
-      SearchView searchView = (SearchView) menuItem.getActionView();
+      //MenuItem menuItem = binding.toolbar.getMenu().findItem(R.id.search_room);
+      SearchView searchView = (SearchView) binding.toolbar.getMenu();
       searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
          @Override
          public boolean onQueryTextSubmit(String roomName) {
