@@ -13,8 +13,11 @@
                 android:id="@+id/filter_today"
                 android:title="Today" />
             <item
-                android:id="@+id/filter_room"
-                android:title="Room" />
+                android:id="@+id/search_room"
+                android:title="Room"
+                app:actionViewClass="android.widget.SearchView"
+                app:showAsAction="ifRoom"
+                />
             <item
                 android:id="@+id/filter_reset"
                 android:title="Reset Filter" />

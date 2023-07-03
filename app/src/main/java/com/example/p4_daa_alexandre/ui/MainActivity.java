@@ -7,18 +7,16 @@ import android.view.MenuItem;
 import android.widget.DatePicker;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.p4_daa_alexandre.R;
-import com.example.p4_daa_alexandre.data.meeting.MeetingRepository;
-import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.ActivityMainBinding;
 import com.example.p4_daa_alexandre.ui.home.HomeFragment;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -101,14 +99,29 @@ public class MainActivity extends AppCompatActivity {
 
    private void handlefilterReset() {
       /**
-       * Appel la méthode Get
+       * Appel la méthode Reset
        */
+      mViewModel.resetFilter();
    }
 
    private void handleFilterRoom() {
-      /**
-       * SearchView
-       */
+      SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchViewItem);
+      searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+         @Override
+         public boolean onQueryTextSubmit(String roomName) {
+            // Action lorsque l'utilisateur soumet la recherche
+            mViewModel.filterMeetingsByRoomName(roomName);
+            return true;
+         }
+
+         @Override
+         public boolean onQueryTextChange(String newRoomName) {
+            // Action lorsque le texte de recherche change
+            // Par exemple, vous pouvez mettre à jour la liste en fonction du texte de recherche en temps réel
+            mViewModel.updateListBasedOnSearchText(newRoomName);
+            return true;
+         }
+      });
    }
 
 }
