@@ -46,7 +46,28 @@ public class MainActivity extends AppCompatActivity {
    @Override
    public boolean onCreateOptionsMenu(Menu menu) {
       getMenuInflater().inflate(R.menu.home_menu, menu);
-      return true;
+
+      MenuItem menuItem = menu.findItem(R.id.search_room);
+      SearchView searchView = (SearchView) menuItem.getActionView();
+      searchView.setQueryHint("Type here to search");
+
+      searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+         @Override
+         public boolean onQueryTextSubmit(String roomName) {
+            // Action lorsque l'utilisateur soumet la recherche
+            mViewModel.filterMeetingsByRoomName(roomName);
+            return true;
+         }
+
+         @Override
+         public boolean onQueryTextChange(String newRoomName) {
+            // Action lorsque le texte de recherche change
+            // Par exemple, vous pouvez mettre à jour la liste en fonction du texte de recherche en temps réel
+            mViewModel.updateListBasedOnSearchText(newRoomName);
+            return true;
+         }
+      });
+      return super.onCreateOptionsMenu(menu);
    }
 
    @Override
@@ -58,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             return true;
          case R.id.search_room:
             // Action pour filtrer par salle de réunion
-            handleFilterRoom();
             return true;
          /**
           * choix pour reset
@@ -101,27 +121,6 @@ public class MainActivity extends AppCompatActivity {
        * Appel la méthode Reset
        */
       mViewModel.resetFilter();
-   }
-
-   private void handleFilterRoom() {
-      //MenuItem menuItem = binding.toolbar.getMenu().findItem(R.id.search_room);
-      SearchView searchView = (SearchView) binding.toolbar.getMenu();
-      searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-         @Override
-         public boolean onQueryTextSubmit(String roomName) {
-            // Action lorsque l'utilisateur soumet la recherche
-            mViewModel.filterMeetingsByRoomName(roomName);
-            return true;
-         }
-
-         @Override
-         public boolean onQueryTextChange(String newRoomName) {
-            // Action lorsque le texte de recherche change
-            // Par exemple, vous pouvez mettre à jour la liste en fonction du texte de recherche en temps réel
-            mViewModel.updateListBasedOnSearchText(newRoomName);
-            return true;
-         }
-      });
    }
 
 }

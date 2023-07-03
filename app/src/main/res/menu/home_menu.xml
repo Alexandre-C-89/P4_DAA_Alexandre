@@ -14,8 +14,8 @@
                 android:title="Today" />
             <item
                 android:id="@+id/search_room"
-                android:title="Room"
-                app:actionViewClass="android.widget.SearchView"
+                android:title="search room"
+                app:actionViewClass="androidx.appcompat.widget.SearchView"
                 app:showAsAction="ifRoom"
                 />
             <item
