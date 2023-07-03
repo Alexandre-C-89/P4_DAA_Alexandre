@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public abstract class DummyMeetingGenerator {
+public class DummyMeetingGenerator {
 
     public static List<Meeting> DUMMY_MEETING = Arrays.asList(
             new Meeting( "Caroline", LocalTime.of(10, 30), LocalDate.of(2023, 10, 2), Arrays.asList("joe", "Alex"),
