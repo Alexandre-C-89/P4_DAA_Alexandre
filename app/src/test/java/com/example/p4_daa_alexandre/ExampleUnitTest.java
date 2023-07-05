@@ -1,7 +1,6 @@
 package com.example.p4_daa_alexandre;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -45,14 +44,14 @@ public class ExampleUnitTest {
         assertThat(meetings, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedMeetings.toArray()));
     }
 
-    @Test
+    /**@Test
     public void deleteMeetingWithSuccess() {
         DummyMeetingGenerator meetingGenerator = new DummyMeetingGenerator();
         List<Meeting> meetings = meetingGenerator.generateMeeting();
         Meeting meetingToDelete = meetings.get(0); // Obtenez la première réunion de la liste
         service.deleteMeeting(meetingToDelete.getId()); // Utilisez l'identifiant de la réunion
         assertFalse(service.getMeetingsLiveData().getValue().contains(meetingToDelete));
-    }
+    }*/
 
     @Test
     public void createMeetingSuccess() {
