@@ -57,7 +57,7 @@ public class MeetingRepository {
         List<Meeting> filteredMeetings = new ArrayList<>();
         for (Meeting meeting : meetings) {
             String meetingRoomName = meeting.getRoomName();
-            if (meetingRoomName.equals(roomName)) {
+            if (meetingRoomName.contains(roomName)) {
                 filteredMeetings.add(meeting);
                 // SearchView affiche dans ma toolbar un edit Text
             }

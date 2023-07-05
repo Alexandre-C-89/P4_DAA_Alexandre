@@ -16,7 +16,7 @@
                 android:id="@+id/search_room"
                 android:title="search room"
                 app:actionViewClass="androidx.appcompat.widget.SearchView"
-                app:showAsAction="ifRoom"
+                app:showAsAction="ifRoom|collapseActionView"
                 />
             <item
                 android:id="@+id/filter_reset"
