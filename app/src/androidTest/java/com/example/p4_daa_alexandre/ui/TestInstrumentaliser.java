@@ -184,7 +184,7 @@ public class TestInstrumentaliser {
     }
 
     /**
-     * filtre par jour
+     * filtre par jour seulement
      */
     @Test
     public void testInstrumentaliser2() {
