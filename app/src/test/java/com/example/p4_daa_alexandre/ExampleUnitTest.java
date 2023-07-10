@@ -1,8 +1,11 @@
 package com.example.p4_daa_alexandre;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
+
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 
 import com.example.p4_daa_alexandre.DI.Di;
 import com.example.p4_daa_alexandre.data.DummyMeetingGenerator;
@@ -11,6 +14,7 @@ import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 
 import org.hamcrest.collection.IsIterableContainingInAnyOrder;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
 
 import java.time.LocalDate;
@@ -24,11 +28,9 @@ import java.util.List;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() {
-        assertEquals(4, 2 + 2);
-    }
 
+    @Rule
+    public InstantTaskExecutorRule mInstantTaskExecutorRule = new InstantTaskExecutorRule();
     private MeetingRepository service;
 
     @Before
@@ -44,23 +46,45 @@ public class ExampleUnitTest {
         assertThat(meetings, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedMeetings.toArray()));
     }
 
-    /**@Test
+    @Test
     public void deleteMeetingWithSuccess() {
-        DummyMeetingGenerator meetingGenerator = new DummyMeetingGenerator();
-        List<Meeting> meetings = meetingGenerator.generateMeeting();
+        List<Meeting> meetings = service.getMeetingsLiveData().getValue();
         Meeting meetingToDelete = meetings.get(0); // Obtenez la première réunion de la liste
         service.deleteMeeting(meetingToDelete.getId()); // Utilisez l'identifiant de la réunion
         assertFalse(service.getMeetingsLiveData().getValue().contains(meetingToDelete));
-    }*/
+    }
 
     @Test
     public void createMeetingSuccess() {
-        //DummyMeetingGenerator meetingGenerator = new DummyMeetingGenerator();
-        //List<Meeting> meetings = meetingGenerator.generateMeeting();
         Meeting meetingToAdd = new Meeting("Demo", LocalTime.of(12, 30), LocalDate.of(2031, 10, 1), Arrays.asList("Joe", "Thomas"), "Salle 2");
         service.addMeeting(meetingToAdd);
-        assertTrue(service.getMeetingsLiveData().getValue().contains(meetingToAdd));
+        List<Meeting> meetings = service.getMeetingsLiveData().getValue();
+        assertTrue(meetings.contains(meetingToAdd));
     }
 
+    /**
+     * filtrer avec résultat et un sans
+     */
+    @Test
+    public void filterMeetingsByDate() {
+        // Définir une date de filtrage
+        LocalDate filterDate1 = LocalDate.of(2023, 7, 1);
+        LocalDate filterDate2 = LocalDate.of(2023, 7, 2);
 
+        // Appliquer le filtre par date
+        service.filterMeetingsByDate(filterDate1);
+        List<Meeting> filteredMeetings1 = service.getMeetingsLiveData().getValue();
+
+        service.filterMeetingsByDate(filterDate2);
+        List<Meeting> filteredMeetings2 = service.getMeetingsLiveData().getValue();
+
+        // Vérifier si les réunions filtrées correspondent à la date de filtrage
+        for (Meeting meeting : filteredMeetings1) {
+            assertEquals(filterDate1, meeting.getDate());
+        }
+
+        for (Meeting meeting : filteredMeetings2) {
+            assertEquals(filterDate2, meeting.getDate());
+        }
+    }
 }
