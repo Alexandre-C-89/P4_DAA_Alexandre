@@ -68,20 +68,28 @@ public class TestUnitaire {
     @Test
     public void filterMeetingsByDate() {
         // Définir une date de filtrage
-        LocalDate filterDate1 = LocalDate.of(2023, 7, 1);
-        LocalDate filterDate2 = LocalDate.of(2023, 7, 2);
+        LocalDate filterDate1 = LocalDate.of(2023, 7, 17);
+        LocalDate filterDate2 = LocalDate.of(2023, 7, 11);
+
+        Meeting meetingToAdd = new Meeting("Demo Design", LocalTime.of(12, 30), LocalDate.of(2023, 7, 17), Arrays.asList("Joe", "Thomas", "Antoine", "David"), "Salle 2");
+
+        // Ajouter la réunion à la liste de réunions
+        service.addMeeting(meetingToAdd);
 
         // Appliquer le filtre par date
         service.filterMeetingsByDate(filterDate1);
         List<Meeting> filteredMeetings1 = service.getMeetingsLiveData().getValue();
 
-        service.filterMeetingsByDate(filterDate2);
-        List<Meeting> filteredMeetings2 = service.getMeetingsLiveData().getValue();
+        assertEquals(1, filteredMeetings1.size());
 
         // Vérifier si les réunions filtrées correspondent à la date de filtrage
         for (Meeting meeting : filteredMeetings1) {
             assertEquals(filterDate1, meeting.getDate());
         }
+
+        service.filterMeetingsByDate(filterDate2);
+        List<Meeting> filteredMeetings2 = service.getMeetingsLiveData().getValue();
+
 
         for (Meeting meeting : filteredMeetings2) {
             assertEquals(filterDate2, meeting.getDate());

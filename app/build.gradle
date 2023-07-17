@@ -14,6 +14,8 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        // rajouter la ligne ici pour reparti de zéro à chaque début de test.
+        testInstrumentationRunnerArguments clearPackageData: 'true'
     }
     buildFeatures {
         viewBinding = true
@@ -33,6 +35,8 @@ android {
         // Used for Unit testing Android dependent elements in /test folder
         unitTests.includeAndroidResources  = true
         unitTests.returnDefaultValues = true
+        animationsDisabled = true
+        execution 'ANDROIDX_TEST_ORCHESTRATOR'
     }
     buildFeatures {
         viewBinding = true
@@ -65,4 +69,6 @@ dependencies {
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
 
     implementation 'com.google.android.material:material:1.9.0'
+    androidTestUtil 'androidx.test:orchestrator:1.4.2'
+
 }
