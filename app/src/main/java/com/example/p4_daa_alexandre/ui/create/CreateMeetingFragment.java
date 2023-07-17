@@ -8,16 +8,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.TimePicker;
-
 import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.lifecycle.ViewModelProvider;
-
 import com.example.p4_daa_alexandre.ui.home.HomeFragment;
 import com.example.p4_daa_alexandre.ui.ViewModelFactory;
 import com.example.p4_daa_alexandre.data.meeting.model.Meeting;
 import com.example.p4_daa_alexandre.databinding.FragmentCreateMeetingBinding;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Arrays;

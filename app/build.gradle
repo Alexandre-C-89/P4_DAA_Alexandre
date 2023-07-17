@@ -41,6 +41,15 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    buildscript {
+        repositories {
+            jcenter()
+        }
+
+        dependencies {
+            classpath "org.jetbrains.dokka:dokka-gradle-plugin:<version>"
+        }
+    }
 }
 
 dependencies {
