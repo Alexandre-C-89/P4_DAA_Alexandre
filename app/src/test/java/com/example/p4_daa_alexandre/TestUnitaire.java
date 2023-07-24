@@ -30,6 +30,9 @@ import java.util.List;
 public class TestUnitaire {
 
     @Rule
+    public InstantTaskExecutorRule rule = new InstantTaskExecutorRule();
+
+    @Rule
     public InstantTaskExecutorRule mInstantTaskExecutorRule = new InstantTaskExecutorRule();
     private MeetingRepository service;
 
