@@ -30,9 +30,6 @@ import java.util.List;
 public class TestUnitaire {
 
     @Rule
-    public InstantTaskExecutorRule rule = new InstantTaskExecutorRule();
-
-    @Rule
     public InstantTaskExecutorRule mInstantTaskExecutorRule = new InstantTaskExecutorRule();
     private MeetingRepository service;
 
@@ -43,7 +40,7 @@ public class TestUnitaire {
 
     @Test
     public void getMeetingsWithSuccess() {
-        MeetingRepository repository = Di.getMeetingRepository();
+        MeetingRepository repository = new MeetingRepository();
         List<Meeting> meetings = repository.getMeetingsLiveData().getValue();
         List<Meeting> expectedMeetings = DummyMeetingGenerator.generateMeeting();
         assertThat(meetings, IsIterableContainingInAnyOrder.containsInAnyOrder(expectedMeetings.toArray()));
