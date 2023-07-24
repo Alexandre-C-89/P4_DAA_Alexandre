@@ -21,6 +21,10 @@ public class DummyMeetingGenerator {
                     "Salle 2")
     );
 
+    /**
+     * Je créer des meetings par défault
+     * qui seront présetn au lancement de l'application
+     */
 
     public static List<Meeting> generateMeeting() {
         return new ArrayList<>(DUMMY_MEETING);
